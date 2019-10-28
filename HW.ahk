@@ -167,12 +167,16 @@ lookup(myItem){
 	
 ;currently only 2560x1440
 ^k::
-	;630,540 960,620
+	WinGetPos winx, winy, winwid, winhei, A
+	box1:=Floor(winx+winwid*.25)
+	box2:=Floor(winx+winwid*.367)
+	box3:=Floor(winx+winwid*.5)
+	box4:=Floor(winx+winwid*.6328)
 	results:=[]
-	results.push(OCR([640, 540, 360, 80]))
-	results.push(OCR([960, 540, 360, 80]))
-	results.push(OCR([1290, 540, 360, 80]))
-	results.push(OCR([1620, 540, 360, 80]))
+	results.push(OCR([box1, 540, 360, 80])) ;640
+	results.push(OCR([box2, 540, 360, 80])) ;940
+	results.push(OCR([box3, 540, 360, 80])) ;1290
+	results.push(OCR([box4, 540, 360, 80])) ;1620
 	itemNames:= []
 	loop 4{
 		bestScore:=0
