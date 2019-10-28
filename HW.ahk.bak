@@ -7,6 +7,7 @@
 global mxpos := 0
 global mypos := 0
 global itemList := []
+global myItems := []
 
 updateItemTable()
 
@@ -147,7 +148,7 @@ lookup(myItem){
 }
 
 ^j::
-	lookup("primed animal instinct")
+	MsgBox % Compare("AshPrimeBlueprint",RegExReplace("Ash Prime Blueprint", "[^a-zA-Z]", ""))
 	return
 	
 ^u::
@@ -165,7 +166,7 @@ lookup(myItem){
 	ExitApp
 	return
 	
-;currently only 2560x1440
+;end of mission lookup	
 ^k::
 	WinGetPos winx, winy, winwid, winhei, A
 	box1:=Floor(winx+winwid*.25)
@@ -185,7 +186,7 @@ lookup(myItem){
 		results[iOuter]:=RegExReplace(results[iOuter], "[^a-zA-Z]", "")
 		;MsgBox % results[iOuter]
 		for i in itemList{
-			iScore:= Compare(results[iOuter],itemList[A_Index])
+			iScore:= Compare(results[iOuter],RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
 			if(iScore>bestScore){
 				bestScore:=iScore
 				bestIndex:=A_Index
@@ -207,4 +208,44 @@ lookup(myItem){
 	strOut:="Reward " mostPlatIndex " has the highest value, " mostPlat "`n`n" itemNames[1][1] " is about " itemNames[1][2] " platinum.`n" itemNames[2][1] " is about " itemNames[2][2] " platinum.`n" itemNames[3][1] " is about " itemNames[3][2] " platinum.`n" itemNames[4][1] " is about " itemNames[4][2] " platinum."
 	SetTimer, doRTT, 500
 	tooltip, %strOut%
+	return
+	
+^d::
+	xcords:=[130,415,695,980,1260,1540]
+	ycords:=[425,670,930,1200]
+	loop 1 {
+		yind:=A_Index
+		loop 6{
+			thisItem:=OCR([xcords[A_Index],ycords[yind],215,60])
+			bestScore:=0
+			bestIndex:=0
+			secondBest:=0
+			thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
+			MsgBox % thisItem
+			for i in itemList{
+				iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
+				if(iScore>bestScore){
+					secondBest:=bestScore
+					bestScore:=iScore
+					bestIndex:=A_Index
+				} else if(iScore>secondBest){
+					secondBest:=iScore
+				}
+			}
+			if(bestScore<5){
+				toAdd:=["unknown"]
+			} else {
+				toAdd:=[itemList[bestIndex]]
+			}
+			MsgBox % toAdd[1] . " " . bestScore . " " . secondBest
+			myItems.push(toAdd)
+		}
+	}
+	MsgBox hi
+	
+	itemStr:= ""
+	for item in myItems{
+		itemStr.=myItems[A_Index][1] . " "
+	}
+	MsgBox % itemStr
 	return
