@@ -35,6 +35,9 @@ updateItemTable(){
 		prevItem:=thisLine
 		itemList.Push(thisLine)
 	}
+	itemList.push("Neuroptics Blueprint")
+	itemList.push("Chassis Blueprint")
+	itemList.push("Systems Blueprint")
 
 	FileDelete %testFile%
 	loop, % itemList.length(){
@@ -147,8 +150,71 @@ lookup(myItem){
 	return lowAvg
 }
 
+ducatOneScreen(){
+	xcords:=[130,415,695,980,1260,1540]
+	ycords:=[425,670,930,1200]
+	loop 4 {
+		yind:=A_Index
+		loop 6{
+			thisItem:=OCR([xcords[A_Index],ycords[yind],215,60])
+			bestScore:=0
+			bestIndex:=0
+			thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
+			for i in itemList{
+				iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
+				if(iScore>bestScore){
+					bestScore:=iScore
+					bestIndex:=A_Index
+				}
+			}
+			
+			if(itemList[bestIndex]=="Neuroptics Blueprint" or itemList[bestIndex]=="Chassis Blueprint" or itemList[bestIndex]=="Systems Blueprint"){
+				thisItem:=OCR([xcords[A_Index],ycords[yind]-30,215,90])
+				bestScore:=0
+				bestIndex:=0
+				thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
+				for i in itemList{
+					iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
+					if(iScore>bestScore){
+						bestScore:=iScore
+						bestIndex:=A_Index
+					}
+				}
+			}
+			
+			if(bestScore<5){
+				myItems.push(["unknown",bestScore])
+			} else {
+				doAdd = true
+				toAdd:=[itemList[bestIndex]]
+				for i in myItems{
+					if(myItems[A_Index]==toAdd){
+						doAdd = false
+					}
+				}
+				if(doAdd){
+					toAdd:=[itemList[bestIndex],bestScore]
+					myItems.push(toAdd)
+				}
+			}
+		}
+	}
+	return
+}
+
 ^j::
-	MsgBox % Compare("AshPrimeBlueprint",RegExReplace("Ash Prime Blueprint", "[^a-zA-Z]", ""))
+	thisItem:=OCR([415,395,215,90])
+	MsgBox % thisItem
+	thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
+	MsgBox % thisItem
+	return
+	
+^l::
+	WinMove, Snipping Tool, ,0,0
+	;MouseMove, 415, 425, 0
+	;Sleep, 1000
+	;MouseMove, 630, 485
+	MouseClickDrag, L, 415, 425, 630, 485
 	return
 	
 ^u::
@@ -210,43 +276,25 @@ lookup(myItem){
 	tooltip, %strOut%
 	return
 	
-;todo: adaptive screen res, if result is neuro, helm, chassis bp check extra line	
+;todo: adaptive screen res
+;scrollbar is 0x66A9BE, non is 0x24292F
+;bottom is 1790 1282
+;issues with some items not being seen and w/ 3 line items
 ^d::
-	xcords:=[130,415,695,980,1260,1540]
-	ycords:=[425,670,930,1200]
-	loop 1 {
-		yind:=A_Index
-		loop 6{
-			thisItem:=OCR([xcords[A_Index],ycords[yind],215,60])
-			bestScore:=0
-			bestIndex:=0
-			secondBest:=0
-			thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
-			MsgBox % thisItem
-			for i in itemList{
-				iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
-				if(iScore>bestScore){
-					secondBest:=bestScore
-					bestScore:=iScore
-					bestIndex:=A_Index
-				} else if(iScore>secondBest){
-					secondBest:=iScore
-				}
-			}
-			if(bestScore<5){
-				toAdd:=["unknown"]
-			} else {
-				toAdd:=[itemList[bestIndex]]
-			}
-			MsgBox % toAdd[1] . " " . bestScore . " " . secondBest
-			myItems.push(toAdd)
-		}
+	myItems:=[]
+	MsgBox Beginning work
+	PixelGetColor, clr, 1790, 1282
+	ducatOneScreen()
+	while clr != 0x66A9BE{
+		send, {Wheeldown 4}
+		ducatOneScreen()
+		PixelGetColor, clr, 1790, 1282
 	}
-	MsgBox hi
+	MsgBox done!
 	
 	itemStr:= ""
 	for item in myItems{
-		itemStr.=myItems[A_Index][1] . " "
+		itemStr.=myItems[A_Index][1] . " || "
 	}
 	MsgBox % itemStr
 	return

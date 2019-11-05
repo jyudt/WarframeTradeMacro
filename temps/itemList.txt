@@ -303,3 +303,6 @@ Zhuge Prime Grip
 Zhuge Prime Receiver
 Zhuge Prime String
  
+Neuroptics Blueprint
+Chassis Blueprint
+Systems Blueprint
