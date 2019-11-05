@@ -220,19 +220,16 @@ lookup(myItem){
 			thisItem:=OCR([xcords[A_Index],ycords[yind],215,60])
 			bestScore:=0
 			bestIndex:=0
-			secondBest:=0
 			thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
 			MsgBox % thisItem
 			for i in itemList{
 				iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
 				if(iScore>bestScore){
-					secondBest:=bestScore
 					bestScore:=iScore
 					bestIndex:=A_Index
-				} else if(iScore>secondBest){
-					secondBest:=iScore
 				}
 			}
+			
 			if(bestScore<5){
 				toAdd:=["unknown"]
 			} else {

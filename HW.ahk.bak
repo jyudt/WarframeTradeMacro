@@ -210,6 +210,7 @@ lookup(myItem){
 	tooltip, %strOut%
 	return
 	
+;todo: adaptive screen res, if result is neuro, helm, chassis bp check extra line	
 ^d::
 	xcords:=[130,415,695,980,1260,1540]
 	ycords:=[425,670,930,1200]
