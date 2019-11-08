@@ -16,9 +16,9 @@ MouseGetPos, mx, my
 RToolTip(mx,my)
 return
 
-updateItemTable(){
+updateItemTableWiki(){
 	myApi := ComObjCreate("WinHTTP.WinHttpRequest.5.1")
-	myURL:= "https://warframe.fandom.com/wiki/Void_Relic/ByRewards/SimpleTable"
+	myURL:= "https://warframe.fandom.com/wiki/Ducats/Prices/All"
 	myApi.Open("GET", myURL, false)
 	myApi.Send()
 	Response := myApi.ResponseText
@@ -28,21 +28,43 @@ updateItemTable(){
 	table := document.getElementsByTagName("table")[0]
 	prevItem:= ""
 	loop, % table.rows.length {
-		thisLine:= table.rows[A_Index].cells[0].innertext . " " . table.rows[A_Index].cells[1].innertext
-		if(thisLine==prevItem or thisLine == "Forma"){
-			continue
-		}
-		prevItem:=thisLine
-		itemList.Push(thisLine)
+		itemList.Push([table.rows[A_Index].cells[0].innertext,table.rows[A_Index].cells[1].innertext])
 	}
-	itemList.push("Neuroptics Blueprint")
-	itemList.push("Chassis Blueprint")
-	itemList.push("Systems Blueprint")
+	itemList.push(["Neuroptics Blueprint",-1])
+	itemList.push(["Chassis Blueprint",-1])
+	itemList.push(["Systems Blueprint",-1])
 
 	FileDelete %testFile%
 	loop, % itemList.length(){
-		store:= itemList[A_Index] . "`n"
+		store:= itemList[A_Index][1] . " " . itemList[A_Index][2] . "`n"
 		FileAppend, %store%, %testFile%
+	}
+	return
+}
+
+updateItemTable(){
+	MyJsonInstance := new JSON()
+	myApi := ComObjCreate("WinHTTP.WinHttpRequest.5.1")
+	myURL:= "https://tenno.zone/data/"
+	myApi.Open("GET", myURL, false)
+	myApi.Send()
+	Response := JSON.load(myApi.ResponseText)
+	pricesUpdatedOn:=SubStr(Response.pricesUpdated,1,10)
+	today:=A_YYYY . "-" . A_MM . "-" . A_DD
+	isToday:=-1
+	if(today==pricesUpdatedOn){
+		isToday==1
+	}
+	for i in Response.parts{
+		itemList.push([Response.parts[A_Index].name,Response.parts[A_Index].ducats,Round(Response.prices[A_Index].priceInfo.average,1),isToday])
+	}
+	
+	
+	itemListFile := A_ScriptDir "\temps\itemList.txt"
+	FileDelete %itemListFile%
+	loop, % itemList.length(){
+		store:= itemList[A_Index][1] . " " . itemList[A_Index][2] . "`n"
+		FileAppend, %store%, %itemListFile%
 	}
 	return
 }
@@ -82,6 +104,15 @@ RToolTip(mx, my){
 }
 
 lookup(myItem){
+	for i in itemList{
+		if(itemList[A_Index][1]==myItem){
+			if(itemList[A_Index][4]==1){
+				return itemList[A_Index][3]
+			} else {
+				itemList[A_Index][4]:=1
+			}
+		}
+	}
 	itemToFind:=StrReplace(myItem, " ", "_")
 	StringLower, itemToFind, itemToFind
 	MyJsonInstance := new JSON()
@@ -146,7 +177,12 @@ lookup(myItem){
 		}
 	}
 	lowAvg:= Round(total/qcount,1)
-	;MsgBox % "Low Average = " lowAvg	
+	;MsgBox % "Low Average = " lowAvg
+	for i in itemList{
+		if(itemList[A_Index][1]==myItem){
+			itemList[A_Index][4]:=1
+		}
+	}
 	return lowAvg
 }
 
@@ -161,20 +197,20 @@ ducatOneScreen(){
 			bestIndex:=0
 			thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
 			for i in itemList{
-				iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
+				iScore:= Compare(thisItem,RegExReplace(itemList[A_Index][1], "[^a-zA-Z]", ""))
 				if(iScore>bestScore){
 					bestScore:=iScore
 					bestIndex:=A_Index
 				}
 			}
 			
-			if(itemList[bestIndex]=="Neuroptics Blueprint" or itemList[bestIndex]=="Chassis Blueprint" or itemList[bestIndex]=="Systems Blueprint"){
+			if(itemList[bestIndex][1]=="Neuroptics Blueprint" or itemList[bestIndex][1]=="Chassis Blueprint" or itemList[bestIndex][1]=="Systems Blueprint"){
 				thisItem:=OCR([xcords[A_Index],ycords[yind]-30,215,90])
 				bestScore:=0
 				bestIndex:=0
 				thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
 				for i in itemList{
-					iScore:= Compare(thisItem,RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
+					iScore:= Compare(thisItem,RegExReplace(itemList[A_Index][1], "[^a-zA-Z]", ""))
 					if(iScore>bestScore){
 						bestScore:=iScore
 						bestIndex:=A_Index
@@ -186,14 +222,14 @@ ducatOneScreen(){
 				myItems.push(["unknown",bestScore])
 			} else {
 				doAdd = true
-				toAdd:=[itemList[bestIndex]]
+				toAdd:=[itemList[bestIndex][1]]
 				for i in myItems{
 					if(myItems[A_Index]==toAdd){
 						doAdd = false
 					}
 				}
 				if(doAdd){
-					toAdd:=[itemList[bestIndex],bestScore]
+					toAdd:=[itemList[bestIndex][1],bestScore]
 					myItems.push(toAdd)
 				}
 			}
@@ -252,14 +288,14 @@ ducatOneScreen(){
 		results[iOuter]:=RegExReplace(results[iOuter], "[^a-zA-Z]", "")
 		;MsgBox % results[iOuter]
 		for i in itemList{
-			iScore:= Compare(results[iOuter],RegExReplace(itemList[A_Index], "[^a-zA-Z]", ""))
+			iScore:= Compare(results[iOuter],RegExReplace(itemList[A_Index][1], "[^a-zA-Z]", ""))
 			if(iScore>bestScore){
 				bestScore:=iScore
 				bestIndex:=A_Index
 			}
 		}
 		;MsgBox % "I guess " . itemList[bestIndex] " score of " . bestScore
-		itemNames[iOuter]:=itemList[bestIndex]
+		itemNames[iOuter]:=itemList[bestIndex][1]
 	}
 	mostPlat:=0
 	mostPlatIndex:=0
@@ -292,9 +328,24 @@ ducatOneScreen(){
 	}
 	MsgBox done!
 	
-	itemStr:= ""
+	dppMin:=5
+	itemStr:= "Items worth at least " . dppMin . " ducats per plat: `n"
 	for item in myItems{
-		itemStr.=myItems[A_Index][1] . " || "
+		thisItem:=myItems[A_Index][1]
+		ducats:=-1
+		plat:=9999
+		if(thisItem!="Forma"){
+			for i in itemList{
+				if(thisItem == itemList[A_Index][1]){
+					ducats:=itemList[A_Index][2]
+					plat:=itemList[A_Index][3]
+				}
+			}
+		}
+		dpp:=Round(ducats/plat,1)
+		if(dpp >= dppMin){
+			itemStr.=thisItem . dpp . "dpp `n"
+		}
 	}
 	MsgBox % itemStr
 	return
