@@ -7,3 +7,4 @@ A general use trade macro for Warframe
 ## Hotkeys
   ctrl+k: Void relic price check - currently only works for 4 players \
   ctrl+b: Ducat kiosk price check - checks ducat/plat ratio for all items in inventory - currently not configurable
+  ctrl+4: Hard closes the program
