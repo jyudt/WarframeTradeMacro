@@ -312,19 +312,19 @@ ducatOneScreen(){
 	tooltip, %strOut%
 	return
 	
-;todo: adaptive screen res
 ;scrollbar is 0x66A9BE, non is 0x24292F
 ;bottom is 1790 1282
 ;issues with some items not being seen and w/ 3 line items
-^d::
+^b::
 	myItems:=[]
 	MsgBox Beginning work
-	PixelGetColor, clr, 1790, 1282
+	WinGetPos winx, winy, winwid, winhei, A
+	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
 	ducatOneScreen()
 	while clr != 0x66A9BE{
 		send, {Wheeldown 4}
 		ducatOneScreen()
-		PixelGetColor, clr, 1790, 1282
+		PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
 	}
 	MsgBox done!
 	
