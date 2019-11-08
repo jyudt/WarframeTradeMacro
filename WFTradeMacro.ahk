@@ -344,7 +344,7 @@ ducatOneScreen(){
 		}
 		dpp:=Round(ducats/plat,1)
 		if(dpp >= dppMin){
-			itemStr.=thisItem . dpp . "dpp `n"
+			itemStr.=thisItem . dpp . " dpp `n"
 		}
 	}
 	MsgBox % itemStr
