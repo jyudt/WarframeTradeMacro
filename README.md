@@ -1,5 +1,6 @@
 # WarframeTradeMacro
-A general use trade macro for Warframe
+A general use trade macro for Warframe \
+NOTE: Currently only works in Borderless or Fullscreen mode
 ## Setup
   1. Install the newest version of [AutoHotkey](https://www.autohotkey.com/)
   2. Download the zip and extract into it's own folder OR clone with git
