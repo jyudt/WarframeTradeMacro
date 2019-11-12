@@ -237,14 +237,17 @@ ducatOneScreen(){
 }
 
 ^j::
+	;PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
+	MouseGetPos mx, my
+	PixelGetColor, clr,1790, 1282,slow RGB
+	MsgBox % clr
 	return
 	
 ^l::
-	WinMove, Snipping Tool, ,0,0
-	;MouseMove, 415, 425, 0
-	;Sleep, 1000
-	;MouseMove, 630, 485
-	MouseClickDrag, L, 415, 425, 630, 485
+	WinGetPos winx, winy, winwid, winhei, A
+	PixelGetColor, clr, Floor(winx+winwid*.699), Floor(winy+winhei*.2)
+	MsgBox % Floor(winx+winwid*.699) . " " . Floor(winy+winhei*.2)
+	MsgBox % clr
 	return
 	
 ^u::
@@ -314,18 +317,22 @@ ducatOneScreen(){
 	if(dppMin=""){
 		dppMin:=5
 	}
-	;send, {Wheelup 100}
+	send, {Wheelup 100}
+	sleep 100
+	;PixelGetColor, SWBlankColor, winx+winwid*.699, winy+winhei*.89,slow
+	;PixelGetColor, SWColor, winx+winwid*.699, winy+winhei*.2,slow
 	MsgBox,,Ducat Manager, Beginning work.  This may take a while., 5
 	WinGetPos winx, winy, winwid, winhei, A
-	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
+	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89,slow
 	ducatOneScreen()
 	while clr != 0x66A9BE{
 		send, {Wheeldown 4}
 		ducatOneScreen()
-		PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
-		if(not(clr==0x66A9BE or clr==0x24292F)){
-			MsgBox Location error!  Please make sure you're playing in Fullscren or Borderless!
-		}
+		PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89,slow
+		;if(clr!=SWColor and clr!=SWBlankColor){
+		;	MsgBox Location Error!  Make sure you are in Fullscreen or Borderless!
+		;	return
+		;}
 	}	
 	
 	itemStr:= "Items worth at least " . dppMin . " ducats per plat: `n"
