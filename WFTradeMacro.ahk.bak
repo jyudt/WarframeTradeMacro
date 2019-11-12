@@ -158,7 +158,6 @@ lookup(myItem){
 			}
 		}
 	}
-	;MsgBox % Floor(lowestPrice) " by " sname
 	total:= 0
 	qCount:=0
 	if(onlineOrders.length()<5){
@@ -177,7 +176,6 @@ lookup(myItem){
 		}
 	}
 	lowAvg:= Round(total/qcount,1)
-	;MsgBox % "Low Average = " lowAvg
 	for i in itemList{
 		if(itemList[A_Index][1]==myItem){
 			itemList[A_Index][4]:=1
@@ -239,10 +237,6 @@ ducatOneScreen(){
 }
 
 ^j::
-	thisItem:=OCR([415,395,215,90])
-	MsgBox % thisItem
-	thisItem:=RegExReplace(thisItem, "[^a-zA-Z]", "")
-	MsgBox % thisItem
 	return
 	
 ^l::
@@ -286,7 +280,6 @@ ducatOneScreen(){
 		bestIndex:=0
 		iOuter:=A_Index
 		results[iOuter]:=RegExReplace(results[iOuter], "[^a-zA-Z]", "")
-		;MsgBox % results[iOuter]
 		for i in itemList{
 			iScore:= Compare(results[iOuter],RegExReplace(itemList[A_Index][1], "[^a-zA-Z]", ""))
 			if(iScore>bestScore){
@@ -294,7 +287,6 @@ ducatOneScreen(){
 				bestIndex:=A_Index
 			}
 		}
-		;MsgBox % "I guess " . itemList[bestIndex] " score of " . bestScore
 		itemNames[iOuter]:=itemList[bestIndex][1]
 	}
 	mostPlat:=0
@@ -317,7 +309,13 @@ ducatOneScreen(){
 ;issues with some items not being seen and w/ 3 line items
 ^b::
 	myItems:=[]
-	MsgBox Beginning work
+	InputBox, dppMin, Ducat Manager, Please input the minimum ducat/platinum ratio
+	dppMin:= RegExReplace(dppMin, "[^0-9.]", "")
+	if(dppMin=""){
+		dppMin:=5
+	}
+	;send, {Wheelup 100}
+	MsgBox,,Ducat Manager, Beginning work.  This may take a while., 5
 	WinGetPos winx, winy, winwid, winhei, A
 	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
 	ducatOneScreen()
@@ -325,13 +323,15 @@ ducatOneScreen(){
 		send, {Wheeldown 4}
 		ducatOneScreen()
 		PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
-	}
-	MsgBox done!
+		if(not(clr==0x66A9BE or clr==0x24292F)){
+			MsgBox Location error!  Please make sure you're playing in Fullscren or Borderless!
+		}
+	}	
 	
-	dppMin:=5
 	itemStr:= "Items worth at least " . dppMin . " ducats per plat: `n"
-	for item in myItems{
-		thisItem:=myItems[A_Index][1]
+	for index, item in myItems{
+		;thisItem:=myItems[A_Index][1]
+		thisItem:=item[1]
 		ducats:=-1
 		plat:=9999
 		if(thisItem!="Forma"){
@@ -344,8 +344,8 @@ ducatOneScreen(){
 		}
 		dpp:=Round(ducats/plat,1)
 		if(dpp >= dppMin){
-			itemStr.=thisItem . dpp . "dpp `n"
+			itemStr.=thisItem . SubStr("                                                  ",1,50-StrLen(thisItem)) . dpp . " dpp `n"
 		}
 	}
-	MsgBox % itemStr
+	MsgBox,,Ducat Manager,% itemStr
 	return
