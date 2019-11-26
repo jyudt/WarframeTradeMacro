@@ -57,12 +57,23 @@ updateItemTable(){
 	Response := JSON.load(myApi.ResponseText)
 	pricesUpdatedOn:=SubStr(Response.pricesUpdated,1,10)
 	today:=A_YYYY . "-" . A_MM . "-" . A_DD
+	yest:=A_YYYY . "-" . A_MM . "-" . (A_DD-1)
+	tom:=A_YYYY . "-" . A_MM . "-" . (A_DD+1)
 	isToday:=-1
-	if(today==pricesUpdatedOn){
-		isToday:=1
+	if(pricesUpdatedOn==yest or pricesUpdatedOn==today or pricesUpdatedOn==tom){
+		isCurrent:=1
 	}
 	for i in Response.parts{
-		itemList.push([Response.parts[A_Index].name,Response.parts[A_Index].ducats,Round(Response.prices[A_Index].priceInfo.average,1),isToday])
+		name:=Response.parts[A_Index].name
+		ducats:=Response.parts[A_Index].ducats
+		price:=-1
+		partID:=response.parts[A_Index].id
+		for x in Response.prices{
+			if(Response.prices[A_Index].partId==partID){
+				price:=Round(Response.prices[A_Index].priceInfo.average,1)
+			}
+		}
+		itemList.push([name,ducats,price,isCurrent])
 	}
 	
 	itemList.push(["Neuroptics Blueprint",-1,-1,1])
@@ -118,7 +129,7 @@ lookup(myItem){
 	for i in itemList{
 		if(itemList[A_Index][1]==myItem){
 			if(itemList[A_Index][4]=="1"){
-				MsgBox % A_Index
+				MsgBox % itemList[A_Index][3]
 				return itemList[A_Index][3]
 			} else {
 				itemList[A_Index][4]:=1
@@ -193,6 +204,7 @@ lookup(myItem){
 			itemList[A_Index][4]:=1
 		}
 	}
+	MsgBox % "Lookup: " lowAvg
 	return lowAvg
 }
 
@@ -279,18 +291,22 @@ ducatOneScreen(){
 	
 ;end of mission lookup	
 ^k::
+	players:=determinePlayers()
 	SetTimer,RemoveToolTip,-1000
 	ToolTip Searching
-	WinGetPos winx, winy, winwid, winhei, A
+	WinGetPos winx, winy, winwid, winhei, A	
 	box1:=Floor(winx+winwid*.25)
 	box2:=Floor(winx+winwid*.367)
 	box3:=Floor(winx+winwid*.5)
 	box4:=Floor(winx+winwid*.6328)
+	x2:=Floor(winx+winwid*.141)
+	y1:=Floor(winy+winhei*.375)
+	y2:=Floor(winy+winhei*.056)
 	results:=[]
-	results.push(OCR([box1, 540, 360, 80])) ;640
-	results.push(OCR([box2, 540, 360, 80])) ;940
-	results.push(OCR([box3, 540, 360, 80])) ;1290
-	results.push(OCR([box4, 540, 360, 80])) ;1620
+	results.push(OCR([box1, y1, x2, y2])) ;640
+	results.push(OCR([box2, y1, x2, y2])) ;940
+	results.push(OCR([box3, y1, x2, y2])) ;1290
+	results.push(OCR([box4, y1, x2, y2])) ;1620
 	itemNames:= []
 	loop 4{
 		bestScore:=0

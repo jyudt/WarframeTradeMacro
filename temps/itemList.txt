@@ -1,307 +1,307 @@
-Akbolto Prime Barrel 45 3.0 -1
-Akbolto Prime Blueprint 15 4.0 -1
-Akbolto Prime Link 45 2.5 -1
-Akbolto Prime Receiver 100 10.5 -1
-Akbronco Prime Blueprint 15 1.5 -1
-Akbronco Prime Link 45 3.5 -1
-Aklex Prime Blueprint 45 14.5 -1
-Aklex Prime Link 100 49.5 -1
-Akstiletto Prime Barrel 45 14.0 -1
-Akstiletto Prime Blueprint 100 13.5 -1
-Akstiletto Prime Link 45 7.0 -1
-Akstiletto Prime Receiver 45 17.5 -1
-Ankyros Prime Blade 65 9.0 -1
-Ankyros Prime Blueprint 15 4.5 -1
-Ankyros Prime Gauntlet 15 12.0 -1
-Ash Prime Blueprint 45 14.0 -1
-Ash Prime Chassis Blueprint 15 8.5 -1
-Ash Prime Neuroptics Blueprint 45 8.0 -1
-Ash Prime Systems Blueprint 65 40.0 -1
-Ballistica Prime Blueprint 100 9.5 -1
-Ballistica Prime Lower Limb 15 3.5 -1
-Ballistica Prime Receiver 45 3.5 -1
-Ballistica Prime String 45 5.5 -1
-Ballistica Prime Upper Limb 45 4.5 -1
-Banshee Prime Blueprint 45 5.0 -1
-Banshee Prime Chassis Blueprint 100 19.0 -1
-Banshee Prime Neuroptics Blueprint 15 3.5 -1
-Banshee Prime Systems Blueprint 100 40.0 -1
-Boar Prime Barrel 45 9.5 -1
-Boar Prime Blueprint 15 7.5 -1
-Boar Prime Receiver 15 6.5 -1
-Boar Prime Stock 100 25.0 -1
-Boltor Prime Barrel 15 8.0 -1
-Boltor Prime Blueprint 100 12.0 -1
-Boltor Prime Receiver 45 6.5 -1
-Boltor Prime Stock 15 9.0 -1
-Braton Prime Barrel 15 2.5 -1
-Braton Prime Blueprint 25 3.5 -1
-Braton Prime Receiver 45 2.5 -1
-Braton Prime Stock 15 1.5 -1
-Bronco Prime Barrel 45 3.5 -1
-Bronco Prime Blueprint 15 2.0 -1
-Bronco Prime Receiver 15 3.5 -1
-Burston Prime Barrel 45 6.5 -1
-Burston Prime Blueprint 15 2.5 -1
-Burston Prime Receiver 15 1.5 -1
-Burston Prime Stock 15 4.0 -1
-Carrier Prime Blueprint 15 7.0 -1
-Carrier Prime Carapace 15 12.5 -1
-Carrier Prime Cerebrum 65 19.0 -1
-Carrier Prime Systems 15 6.0 -1
-Cernos Prime Blueprint 45 3.5 -1
-Cernos Prime Grip 15 4.0 -1
-Cernos Prime Lower Limb 100 17.0 -1
-Cernos Prime String 45 7.0 -1
-Cernos Prime Upper Limb 15 5.0 -1
-Dakra Prime Blade 65 9.5 -1
-Dakra Prime Blueprint 45 7.5 -1
-Dakra Prime Handle 15 5.5 -1
-Dual Kamas Prime Blade 100 85.0 -1
-Dual Kamas Prime Blueprint 15 5.0 -1
-Dual Kamas Prime Handle 45 10.0 -1
-Ember Prime Blueprint 100 49.5 -1
-Ember Prime Chassis Blueprint 15 19.0 -1
-Ember Prime Neuroptics Blueprint 15 19.0 -1
-Ember Prime Systems Blueprint 45 26.0 -1
-Euphona Prime Barrel 45 5.0 -1
-Euphona Prime Blueprint 15 3.5 -1
-Euphona Prime Receiver 100 51.5 -1
-Fang Prime Blade 15 6.5 -1
-Fang Prime Blueprint 15 1.5 -1
-Fang Prime Handle 25 3.5 -1
-Forma Blueprint  7.5 -1
-Fragor Prime Blueprint 65 8.0 -1
-Fragor Prime Handle 65 8.0 -1
-Fragor Prime Head 15 76.0 -1
-Frost Prime Blueprint 100 14.0 -1
-Frost Prime Chassis Blueprint 15 6.5 -1
-Frost Prime Neuroptics Blueprint 15 16.5 -1
-Frost Prime Systems Blueprint 45 4.5 -1
-Galatine Prime Blade 15 37.5 -1
-Galatine Prime Blueprint 100 5.0 -1
-Galatine Prime Handle 45 10.0 -1
-Glaive Prime Blade 45 29.0 -1
-Glaive Prime Blueprint 100 9.5 -1
-Glaive Prime Disc 45 4.0 -1
-Helios Prime Blueprint 45 4.0 -1
-Helios Prime Carapace 15 33.5 -1
-Helios Prime Cerebrum 100 7.0 -1
-Helios Prime Systems 45 4.5 -1
-Hikou Prime Blueprint 15 15.5 -1
-Hikou Prime Pouch 15 8.5 -1
-Hikou Prime Stars 15 6.0 -1
-Hydroid Prime Blueprint 45 4.5 -1
-Hydroid Prime Chassis Blueprint 15 5.5 -1
-Hydroid Prime Neuroptics Blueprint 45 52.5 -1
-Hydroid Prime Systems Blueprint 100 5.0 -1
-Kavasa Prime Collar Band 45 24.5 -1
-Kavasa Prime Collar Buckle 65 8.0 -1
-Kavasa Prime Collar Blueprint 45 4.0 -1
-Kogake Prime Blueprint 45 4.0 -1
-Kogake Prime Boot 15 7.0 -1
-Kogake Prime Gauntlet 100 10.0 -1
-Latron Prime Barrel 15 7.0 -1
-Latron Prime Blueprint 15 9.0 -1
-Latron Prime Receiver 15 13.5 -1
-Latron Prime Stock 15 3.0 -1
-Lex Prime Barrel 15 1.5 -1
-Lex Prime Blueprint 25 5.5 -1
-Lex Prime Receiver 15 59.5 -1
-Mag Prime Blueprint 100 8.5 -1
-Mag Prime Chassis Blueprint 45 9.5 -1
-Mag Prime Neuroptics Blueprint 15 7.5 -1
-Mag Prime Systems Blueprint 45 28.5 -1
-Mirage Prime Blueprint 100 7.0 -1
-Mirage Prime Chassis Blueprint 15 3.0 -1
-Mirage Prime Neuroptics Blueprint 15 5.0 -1
-Mirage Prime Systems Blueprint 45 16.5 -1
-Nami Skyla Prime Blade 100 5.5 -1
-Nami Skyla Prime Blueprint 15 5.5 -1
-Nami Skyla Prime Handle 45 60.0 -1
-Nekros Prime Blueprint 100 7.0 -1
-Nekros Prime Chassis Blueprint 15 29.0 -1
-Nekros Prime Neuroptics Blueprint 45 52.5 -1
-Nekros Prime Systems Blueprint 100 8.5 -1
-Nikana Prime Blade 100 4.0 -1
-Nikana Prime Blueprint 65 23.0 -1
-Nikana Prime Hilt 100 7.5 -1
-Nova Prime Blueprint 45 68.5 -1
-Nova Prime Chassis Blueprint 100 7.5 -1
-Nova Prime Neuroptics Blueprint 15 9.5 -1
-Nova Prime Systems Blueprint 15 4.5 -1
-Nyx Prime Blueprint 15 6.0 -1
-Nyx Prime Chassis Blueprint 65 28.0 -1
-Nyx Prime Neuroptics Blueprint 100 8.0 -1
-Nyx Prime Systems Blueprint 45 3.5 -1
-Oberon Prime Blueprint 45 3.5 -1
-Oberon Prime Chassis Blueprint 15 15.0 -1
-Oberon Prime Neuroptics Blueprint 100 53.5 -1
-Oberon Prime Systems Blueprint 100 9.5 -1
-Odonata Prime Blueprint 45 8.5 -1
-Odonata Prime Harness Blueprint 15 6.0 -1
-Odonata Prime Systems Blueprint 15 14.5 -1
-Odonata Prime Wings Blueprint 45 3.5 -1
-Orthos Prime Blade 45 2.5 -1
-Orthos Prime Blueprint 45 2.5 -1
-Orthos Prime Handle 15 1.5 -1
-Paris Prime Blueprint 15 4.5 -1
-Paris Prime Grip 45 1.5 -1
-Paris Prime Lower Limb 15 4.0 -1
-Paris Prime String 15 2.5 -1
-Paris Prime Upper Limb 25 15.0 -1
-Reaper Prime Blade 45 14.0 -1
-Reaper Prime Blueprint 15 25.0 -1
-Reaper Prime Handle 15 55.5 -1
-Rhino Prime Blueprint 100 14.5 -1
-Rhino Prime Chassis Blueprint 65 19.0 -1
-Rhino Prime Neuroptics Blueprint 45 8.0 -1
-Rhino Prime Systems Blueprint 15 12.0 -1
-Saryn Prime Blueprint 65 47.5 -1
-Saryn Prime Chassis Blueprint 100 5.0 -1
-Saryn Prime Neuroptics Blueprint 45 5.0 -1
-Saryn Prime Systems Blueprint 15 15.0 -1
-Scindo Prime Blade 100 3.5 -1
-Scindo Prime Blueprint 45 4.5 -1
-Scindo Prime Handle 45 10.0 -1
-Sicarus Prime Barrel 15 6.5 -1
-Sicarus Prime Blueprint 15 30.0 -1
-Sicarus Prime Receiver 100 6.5 -1
-Silva & Aegis Prime Blade 45 7.0 -1
-Silva & Aegis Prime Blueprint 45 17.5 -1
-Silva & Aegis Prime Guard 100 3.5 -1
-Silva & Aegis Prime Hilt 15 15.0 -1
-Soma Prime Barrel 15 4.5 -1
-Soma Prime Blueprint 15 10.0 -1
-Soma Prime Receiver 45 25.0 -1
-Soma Prime Stock 100 6.0 -1
-Spira Prime Blade 65 3.0 -1
-Spira Prime Blueprint 15 18.5 -1
-Spira Prime Pouch 100 14.0 -1
-Sybaris Prime Barrel 100 3.0 -1
-Sybaris Prime Blueprint 15 5.5 -1
-Sybaris Prime Receiver 45 4.5 -1
-Sybaris Prime Stock 15 4.5 -1
-Tigris Prime Barrel 45 34.0 -1
-Tigris Prime Blueprint 100 7.0 -1
-Tigris Prime Receiver 45 4.0 -1
-Tigris Prime Stock 15 22.0 -1
-Trinity Prime Blueprint 45 20.0 -1
-Trinity Prime Chassis Blueprint 45 22.5 -1
-Trinity Prime Neuroptics Blueprint 25 9.0 -1
-Trinity Prime Systems Blueprint 15 3.5 -1
-Valkyr Prime Blueprint 15 30.5 -1
-Valkyr Prime Chassis Blueprint 100 4.5 -1
-Valkyr Prime Neuroptics Blueprint 45 10.0 -1
-Valkyr Prime Systems Blueprint 100 19.5 -1
-Vasto Prime Barrel 15 14.0 -1
-Vasto Prime Blueprint 45 7.0 -1
-Vasto Prime Receiver 15 14.0 -1
-Vauban Prime Blueprint 100 20.5 -1
-Vauban Prime Chassis Blueprint 100 30.0 -1
-Vauban Prime Neuroptics Blueprint 100 37.5 -1
-Vauban Prime Systems Blueprint 100 14.5 -1
-Vectis Prime Barrel 15 7.0 -1
-Vectis Prime Blueprint 45 24.5 -1
-Vectis Prime Receiver 100 12.0 -1
-Vectis Prime Stock 65 6.0 -1
-Venka Prime Blades 15 4.0 -1
-Venka Prime Blueprint 45 34.5 -1
-Venka Prime Gauntlet 100 26.0 -1
-Volt Prime Blueprint 45 29.5 -1
-Volt Prime Chassis Blueprint 45 59.5 -1
-Volt Prime Neuroptics Blueprint 45 23.0 -1
-Volt Prime Systems Blueprint 45 8.5 -1
-Loki Prime Blueprint 15 14.0 -1
-Loki Prime Chassis Blueprint 45 9.5 -1
-Loki Prime Neuroptics Blueprint 15 187.5 -1
-Loki Prime Systems Blueprint 100 7.5 -1
-Bo Prime Blueprint 15 36.0 -1
-Bo Prime Ornament 15 10.0 -1
-Bo Prime Handle 45 6.0 -1
-Wyrm Prime Blueprint 15 32.0 -1
-Wyrm Prime Carapace 15 9.0 -1
-Wyrm Prime Cerebrum 15 14.5 -1
-Wyrm Prime Systems 45 10.5 -1
-Zephyr Prime Blueprint 100 3.5 -1
-Zephyr Prime Chassis Blueprint 45 11.5 -1
-Zephyr Prime Systems Blueprint 100 1.5 -1
-Zephyr Prime Neuroptics Blueprint 15 3.0 -1
-Tiberon Prime Blueprint 45 6.0 -1
-Tiberon Prime Receiver 15 9.5 -1
-Tiberon Prime Barrel 100 9.0 -1
-Tiberon Prime Stock 100 3.0 -1
-Kronen Prime Blueprint 15 5.0 -1
-Kronen Prime Handle 45 14.5 -1
-Kronen Prime Blade 100 2.0 -1
-Limbo Prime Systems Blueprint 15 10.5 -1
-Pyrana Prime Blueprint 100 13.0 -1
-Destreza Prime Blade 100 3.5 -1
-Limbo Prime Blueprint 45 28.0 -1
-Limbo Prime Chassis Blueprint 100 3.5 -1
-Pyrana Prime Barrel 15 2.0 -1
-Destreza Prime Blueprint 45 3.0 -1
-Pyrana Prime Receiver 45 5.0 -1
-Destreza Prime Handle 15 10.0 -1
-Limbo Prime Neuroptics Blueprint 100 2.5 -1
-Rubico Prime Receiver 15 10.0 -1
-Chroma Prime Neuroptics Blueprint 100 5.0 -1
-Rubico Prime Stock 45 12.0 -1
-Rubico Prime Blueprint 100 2.5 -1
-Gram Prime Blade 15 3.0 -1
-Chroma Prime Chassis Blueprint 45 3.5 -1
-Chroma Prime Blueprint 15 23.0 -1
-Gram Prime Handle 100 3.0 -1
-Rubico Prime Barrel 45 16.5 -1
-Chroma Prime Systems Blueprint 100 3.5 -1
-Gram Prime Blueprint 45 51.0 -1
-Akvasto Prime Blueprint 100 10.0 -1
-Akvasto Prime Link 45 10.0 -1
-Mesa Prime Neuroptics Blueprint 100 2.5 -1
-Redeemer Prime Blueprint 45 3.5 -1
-Akjagara Prime Link 45 3.5 -1
-Redeemer Prime Blade 15 10.0 -1
-Akjagara Prime Barrel 100 3.0 -1
-Mesa Prime Blueprint 45 20.0 -1
-Mesa Prime Systems Blueprint 100 1.5 -1
-Akjagara Prime Blueprint 15 35.0 -1
-Redeemer Prime Handle 100 4.0 -1
-Mesa Prime Chassis Blueprint 15 8.0 -1
-Akjagara Prime Receiver 45 2.0 -1
-Stradavar Prime Barrel 45 3.0 -1
-Equinox Prime Chassis Blueprint 15 3.0 -1
-Tipedo Prime Blueprint 15 15.0 -1
-Equinox Prime Systems Blueprint 100 6.0 -1
-Equinox Prime Neuroptics Blueprint 45 3.5 -1
-Stradavar Prime Receiver 15 10.5 -1
-Stradavar Prime Blueprint 100 7.0 -1
-Tipedo Prime Ornament 45 13.5 -1
-Tipedo Prime Handle 100 10.5 -1
-Stradavar Prime Stock 15 10.5 -1
-Equinox Prime Blueprint 45 18.5 -1
-Wukong Prime Blueprint 100 4.0 -1
-Zhuge Prime Blueprint 45 25.0 -1
-Ninkondi Prime Handle 100 15.0 -1
-Wukong Prime Systems Blueprint 45 4.0 -1
-Zhuge Prime Grip 15 5.0 -1
-Wukong Prime Chassis Blueprint 45 10.0 -1
-Zhuge Prime Barrel 100 3.5 -1
-Ninkondi Prime Blueprint 15 3.5 -1
-Ninkondi Prime Chain 45 7.5 -1
-Zhuge Prime String 15 10.0 -1
-Wukong Prime Neuroptics Blueprint 15 14.0 -1
-Zhuge Prime Receiver 45 3.5 -1
-Tekko Prime Blueprint 45 10.0 -1
-Dethcube Prime Blueprint 100 5.0 -1
-Atlas Prime Blueprint 15 10.0 -1
-Tekko Prime Gauntlet 15 18.5 -1
-Dethcube Prime Cerebrum 100 12.0 -1
-Atlas Prime Chassis Blueprint 45 29.5 -1
-Tekko Prime Blade 100 6.0 -1
-Dethcube Prime Carapace 45 10.0 -1
-Atlas Prime Systems Blueprint 45 21.5 -1
-Dethcube Prime Systems 15 70.5 -1
-Atlas Prime Neuroptics Blueprint 100 0.0 -1
+Akbolto Prime Barrel 45 3.0 1
+Akbolto Prime Blueprint 15 4.0 1
+Akbolto Prime Link 45 2.5 1
+Akbolto Prime Receiver 100 10.5 1
+Akbronco Prime Blueprint 15 1.5 1
+Akbronco Prime Link 45 3.5 1
+Aklex Prime Blueprint 45 14.5 1
+Aklex Prime Link 100 49.5 1
+Akstiletto Prime Barrel 45 14.0 1
+Akstiletto Prime Blueprint 100 13.5 1
+Akstiletto Prime Link 45 7.0 1
+Akstiletto Prime Receiver 45 17.5 1
+Ankyros Prime Blade 65 9.0 1
+Ankyros Prime Blueprint 15 4.5 1
+Ankyros Prime Gauntlet 15 12.0 1
+Ash Prime Blueprint 45 14.0 1
+Ash Prime Chassis Blueprint 15 8.5 1
+Ash Prime Neuroptics Blueprint 45 8.0 1
+Ash Prime Systems Blueprint 65 40.0 1
+Ballistica Prime Blueprint 100 9.5 1
+Ballistica Prime Lower Limb 15 3.5 1
+Ballistica Prime Receiver 45 3.5 1
+Ballistica Prime String 45 5.5 1
+Ballistica Prime Upper Limb 45 4.5 1
+Banshee Prime Blueprint 45 5.0 1
+Banshee Prime Chassis Blueprint 100 19.0 1
+Banshee Prime Neuroptics Blueprint 15 3.5 1
+Banshee Prime Systems Blueprint 100 40.0 1
+Boar Prime Barrel 45 9.5 1
+Boar Prime Blueprint 15 7.5 1
+Boar Prime Receiver 15 6.5 1
+Boar Prime Stock 100 25.0 1
+Boltor Prime Barrel 15 8.0 1
+Boltor Prime Blueprint 100 12.0 1
+Boltor Prime Receiver 45 6.5 1
+Boltor Prime Stock 15 9.0 1
+Braton Prime Barrel 15 2.5 1
+Braton Prime Blueprint 25 3.5 1
+Braton Prime Receiver 45 2.5 1
+Braton Prime Stock 15 1.5 1
+Bronco Prime Barrel 45 3.5 1
+Bronco Prime Blueprint 15 2.0 1
+Bronco Prime Receiver 15 3.5 1
+Burston Prime Barrel 45 6.5 1
+Burston Prime Blueprint 15 2.5 1
+Burston Prime Receiver 15 1.5 1
+Burston Prime Stock 15 4.0 1
+Carrier Prime Blueprint 15 7.0 1
+Carrier Prime Carapace 15 12.5 1
+Carrier Prime Cerebrum 65 19.0 1
+Carrier Prime Systems 15 6.0 1
+Cernos Prime Blueprint 45 3.5 1
+Cernos Prime Grip 15 4.0 1
+Cernos Prime Lower Limb 100 17.0 1
+Cernos Prime String 45 7.0 1
+Cernos Prime Upper Limb 15 5.0 1
+Dakra Prime Blade 65 9.5 1
+Dakra Prime Blueprint 45 7.5 1
+Dakra Prime Handle 15 5.5 1
+Dual Kamas Prime Blade 100 85.0 1
+Dual Kamas Prime Blueprint 15 5.0 1
+Dual Kamas Prime Handle 45 10.0 1
+Ember Prime Blueprint 100 49.5 1
+Ember Prime Chassis Blueprint 15 19.0 1
+Ember Prime Neuroptics Blueprint 15 19.0 1
+Ember Prime Systems Blueprint 45 26.0 1
+Euphona Prime Barrel 45 5.0 1
+Euphona Prime Blueprint 15 3.5 1
+Euphona Prime Receiver 100 51.5 1
+Fang Prime Blade 15 6.5 1
+Fang Prime Blueprint 15 1.5 1
+Fang Prime Handle 25 3.5 1
+Forma Blueprint  -1 1
+Fragor Prime Blueprint 65 7.5 1
+Fragor Prime Handle 65 8.0 1
+Fragor Prime Head 15 8.0 1
+Frost Prime Blueprint 100 76.0 1
+Frost Prime Chassis Blueprint 15 14.0 1
+Frost Prime Neuroptics Blueprint 15 6.5 1
+Frost Prime Systems Blueprint 45 16.5 1
+Galatine Prime Blade 15 4.5 1
+Galatine Prime Blueprint 100 37.5 1
+Galatine Prime Handle 45 5.0 1
+Glaive Prime Blade 45 10.0 1
+Glaive Prime Blueprint 100 29.0 1
+Glaive Prime Disc 45 9.5 1
+Helios Prime Blueprint 45 4.0 1
+Helios Prime Carapace 15 4.0 1
+Helios Prime Cerebrum 100 33.5 1
+Helios Prime Systems 45 7.0 1
+Hikou Prime Blueprint 15 4.5 1
+Hikou Prime Pouch 15 15.5 1
+Hikou Prime Stars 15 8.5 1
+Hydroid Prime Blueprint 45 6.0 1
+Hydroid Prime Chassis Blueprint 15 4.5 1
+Hydroid Prime Neuroptics Blueprint 45 5.5 1
+Hydroid Prime Systems Blueprint 100 52.5 1
+Kavasa Prime Collar Band 45 5.0 1
+Kavasa Prime Collar Buckle 65 24.5 1
+Kavasa Prime Collar Blueprint 45 8.0 1
+Kogake Prime Blueprint 45 4.0 1
+Kogake Prime Boot 15 4.0 1
+Kogake Prime Gauntlet 100 7.0 1
+Latron Prime Barrel 15 10.0 1
+Latron Prime Blueprint 15 7.0 1
+Latron Prime Receiver 15 9.0 1
+Latron Prime Stock 15 13.5 1
+Lex Prime Barrel 15 3.0 1
+Lex Prime Blueprint 25 1.5 1
+Lex Prime Receiver 15 5.5 1
+Mag Prime Blueprint 100 59.5 1
+Mag Prime Chassis Blueprint 45 8.5 1
+Mag Prime Neuroptics Blueprint 15 9.5 1
+Mag Prime Systems Blueprint 45 7.5 1
+Mirage Prime Blueprint 100 28.5 1
+Mirage Prime Chassis Blueprint 15 7.0 1
+Mirage Prime Neuroptics Blueprint 15 3.0 1
+Mirage Prime Systems Blueprint 45 5.0 1
+Nami Skyla Prime Blade 100 16.5 1
+Nami Skyla Prime Blueprint 15 5.5 1
+Nami Skyla Prime Handle 45 5.5 1
+Nekros Prime Blueprint 100 60.0 1
+Nekros Prime Chassis Blueprint 15 7.0 1
+Nekros Prime Neuroptics Blueprint 45 29.0 1
+Nekros Prime Systems Blueprint 100 52.5 1
+Nikana Prime Blade 100 8.5 1
+Nikana Prime Blueprint 65 4.0 1
+Nikana Prime Hilt 100 23.0 1
+Nova Prime Blueprint 45 7.5 1
+Nova Prime Chassis Blueprint 100 68.5 1
+Nova Prime Neuroptics Blueprint 15 7.5 1
+Nova Prime Systems Blueprint 15 9.5 1
+Nyx Prime Blueprint 15 4.5 1
+Nyx Prime Chassis Blueprint 65 6.0 1
+Nyx Prime Neuroptics Blueprint 100 28.0 1
+Nyx Prime Systems Blueprint 45 8.0 1
+Oberon Prime Blueprint 45 3.5 1
+Oberon Prime Chassis Blueprint 15 3.5 1
+Oberon Prime Neuroptics Blueprint 100 15.0 1
+Oberon Prime Systems Blueprint 100 53.5 1
+Odonata Prime Blueprint 45 9.5 1
+Odonata Prime Harness Blueprint 15 8.5 1
+Odonata Prime Systems Blueprint 15 6.0 1
+Odonata Prime Wings Blueprint 45 14.5 1
+Orthos Prime Blade 45 3.5 1
+Orthos Prime Blueprint 45 2.5 1
+Orthos Prime Handle 15 2.5 1
+Paris Prime Blueprint 15 1.5 1
+Paris Prime Grip 45 4.5 1
+Paris Prime Lower Limb 15 1.5 1
+Paris Prime String 15 4.0 1
+Paris Prime Upper Limb 25 2.5 1
+Reaper Prime Blade 45 15.0 1
+Reaper Prime Blueprint 15 14.0 1
+Reaper Prime Handle 15 25.0 1
+Rhino Prime Blueprint 100 55.5 1
+Rhino Prime Chassis Blueprint 65 14.5 1
+Rhino Prime Neuroptics Blueprint 45 19.0 1
+Rhino Prime Systems Blueprint 15 8.0 1
+Saryn Prime Blueprint 65 12.0 1
+Saryn Prime Chassis Blueprint 100 47.5 1
+Saryn Prime Neuroptics Blueprint 45 5.0 1
+Saryn Prime Systems Blueprint 15 5.0 1
+Scindo Prime Blade 100 15.0 1
+Scindo Prime Blueprint 45 3.5 1
+Scindo Prime Handle 45 4.5 1
+Sicarus Prime Barrel 15 10.0 1
+Sicarus Prime Blueprint 15 6.5 1
+Sicarus Prime Receiver 100 30.0 1
+Silva & Aegis Prime Blade 45 6.5 1
+Silva & Aegis Prime Blueprint 45 7.0 1
+Silva & Aegis Prime Guard 100 17.5 1
+Silva & Aegis Prime Hilt 15 3.5 1
+Soma Prime Barrel 15 15.0 1
+Soma Prime Blueprint 15 4.5 1
+Soma Prime Receiver 45 10.0 1
+Soma Prime Stock 100 25.0 1
+Spira Prime Blade 65 6.0 1
+Spira Prime Blueprint 15 3.0 1
+Spira Prime Pouch 100 18.5 1
+Sybaris Prime Barrel 100 14.0 1
+Sybaris Prime Blueprint 15 3.0 1
+Sybaris Prime Receiver 45 5.5 1
+Sybaris Prime Stock 15 4.5 1
+Tigris Prime Barrel 45 4.5 1
+Tigris Prime Blueprint 100 34.0 1
+Tigris Prime Receiver 45 7.0 1
+Tigris Prime Stock 15 4.0 1
+Trinity Prime Blueprint 45 22.0 1
+Trinity Prime Chassis Blueprint 45 20.0 1
+Trinity Prime Neuroptics Blueprint 25 22.5 1
+Trinity Prime Systems Blueprint 15 9.0 1
+Valkyr Prime Blueprint 15 3.5 1
+Valkyr Prime Chassis Blueprint 100 30.5 1
+Valkyr Prime Neuroptics Blueprint 45 4.5 1
+Valkyr Prime Systems Blueprint 100 10.0 1
+Vasto Prime Barrel 15 19.5 1
+Vasto Prime Blueprint 45 14.0 1
+Vasto Prime Receiver 15 7.0 1
+Vauban Prime Blueprint 100 14.0 1
+Vauban Prime Chassis Blueprint 100 20.5 1
+Vauban Prime Neuroptics Blueprint 100 30.0 1
+Vauban Prime Systems Blueprint 100 37.5 1
+Vectis Prime Barrel 15 14.5 1
+Vectis Prime Blueprint 45 7.0 1
+Vectis Prime Receiver 100 24.5 1
+Vectis Prime Stock 65 12.0 1
+Venka Prime Blades 15 6.0 1
+Venka Prime Blueprint 45 4.0 1
+Venka Prime Gauntlet 100 34.5 1
+Volt Prime Blueprint 45 26.0 1
+Volt Prime Chassis Blueprint 45 29.5 1
+Volt Prime Neuroptics Blueprint 45 59.5 1
+Volt Prime Systems Blueprint 45 23.0 1
+Loki Prime Blueprint 15 8.5 1
+Loki Prime Chassis Blueprint 45 14.0 1
+Loki Prime Neuroptics Blueprint 15 9.5 1
+Loki Prime Systems Blueprint 100 187.5 1
+Bo Prime Blueprint 15 7.5 1
+Bo Prime Ornament 15 36.0 1
+Bo Prime Handle 45 10.0 1
+Wyrm Prime Blueprint 15 6.0 1
+Wyrm Prime Carapace 15 32.0 1
+Wyrm Prime Cerebrum 15 9.0 1
+Wyrm Prime Systems 45 14.5 1
+Zephyr Prime Blueprint 100 10.5 1
+Zephyr Prime Chassis Blueprint 45 3.5 1
+Zephyr Prime Systems Blueprint 100 11.5 1
+Zephyr Prime Neuroptics Blueprint 15 1.5 1
+Tiberon Prime Blueprint 45 3.0 1
+Tiberon Prime Receiver 15 6.0 1
+Tiberon Prime Barrel 100 9.5 1
+Tiberon Prime Stock 100 9.0 1
+Kronen Prime Blueprint 15 3.0 1
+Kronen Prime Handle 45 5.0 1
+Kronen Prime Blade 100 14.5 1
+Limbo Prime Systems Blueprint 15 2.0 1
+Pyrana Prime Blueprint 100 10.5 1
+Destreza Prime Blade 100 13.0 1
+Limbo Prime Blueprint 45 3.5 1
+Limbo Prime Chassis Blueprint 100 28.0 1
+Pyrana Prime Barrel 15 3.5 1
+Destreza Prime Blueprint 45 2.0 1
+Pyrana Prime Receiver 45 3.0 1
+Destreza Prime Handle 15 5.0 1
+Limbo Prime Neuroptics Blueprint 100 10.0 1
+Rubico Prime Receiver 15 2.5 1
+Chroma Prime Neuroptics Blueprint 100 10.0 1
+Rubico Prime Stock 45 5.0 1
+Rubico Prime Blueprint 100 12.0 1
+Gram Prime Blade 15 2.5 1
+Chroma Prime Chassis Blueprint 45 3.0 1
+Chroma Prime Blueprint 15 3.5 1
+Gram Prime Handle 100 23.0 1
+Rubico Prime Barrel 45 3.0 1
+Chroma Prime Systems Blueprint 100 16.5 1
+Gram Prime Blueprint 45 3.5 1
+Akvasto Prime Blueprint 100 51.0 1
+Akvasto Prime Link 45 10.0 1
+Mesa Prime Neuroptics Blueprint 100 10.0 1
+Redeemer Prime Blueprint 45 2.5 1
+Akjagara Prime Link 45 3.5 1
+Redeemer Prime Blade 15 3.5 1
+Akjagara Prime Barrel 100 10.0 1
+Mesa Prime Blueprint 45 3.0 1
+Mesa Prime Systems Blueprint 100 20.0 1
+Akjagara Prime Blueprint 15 1.5 1
+Redeemer Prime Handle 100 35.0 1
+Mesa Prime Chassis Blueprint 15 4.0 1
+Akjagara Prime Receiver 45 8.0 1
+Stradavar Prime Barrel 45 2.0 1
+Equinox Prime Chassis Blueprint 15 3.0 1
+Tipedo Prime Blueprint 15 3.0 1
+Equinox Prime Systems Blueprint 100 15.0 1
+Equinox Prime Neuroptics Blueprint 45 6.0 1
+Stradavar Prime Receiver 15 3.5 1
+Stradavar Prime Blueprint 100 10.5 1
+Tipedo Prime Ornament 45 7.0 1
+Tipedo Prime Handle 100 13.5 1
+Stradavar Prime Stock 15 10.5 1
+Equinox Prime Blueprint 45 10.5 1
+Wukong Prime Blueprint 100 18.5 1
+Zhuge Prime Blueprint 45 4.0 1
+Ninkondi Prime Handle 100 25.0 1
+Wukong Prime Systems Blueprint 45 15.0 1
+Zhuge Prime Grip 15 4.0 1
+Wukong Prime Chassis Blueprint 45 5.0 1
+Zhuge Prime Barrel 100 10.0 1
+Ninkondi Prime Blueprint 15 3.5 1
+Ninkondi Prime Chain 45 3.5 1
+Zhuge Prime String 15 7.5 1
+Wukong Prime Neuroptics Blueprint 15 10.0 1
+Zhuge Prime Receiver 45 14.0 1
+Tekko Prime Blueprint 45 3.5 1
+Dethcube Prime Blueprint 100 10.0 1
+Atlas Prime Blueprint 15 5.0 1
+Tekko Prime Gauntlet 15 10.0 1
+Dethcube Prime Cerebrum 100 18.5 1
+Atlas Prime Chassis Blueprint 45 12.0 1
+Tekko Prime Blade 100 29.5 1
+Dethcube Prime Carapace 45 6.0 1
+Atlas Prime Systems Blueprint 45 10.0 1
+Dethcube Prime Systems 15 21.5 1
+Atlas Prime Neuroptics Blueprint 100 70.5 1
 Neuroptics Blueprint -1 -1 1
 Chassis Blueprint -1 -1 1
 Systems Blueprint -1 -1 1
