@@ -26,20 +26,28 @@ determinePlayers(){
 	WinGetPos winx, winy, winwid, winhei, A
 	myFile:= A_ScriptDir "\lib\invite.png"
 	CoordMode Pixel
-	ImageSearch, imgx, imgy, winx+winwid*.0977, winy+winhei*.0347, winx+winwid*.123, winy+winhei*.0868,*20 %myFile%
+	x1:=Floor(winx+winwid*.0977)
+	y1:=Floor(winy+winhei*.0347)
+	x2:=Floor(winx+winwid*.123)
+	y2:=Floor(winy+winhei*.0868)
+	ImageSearch, imgx, imgy, %x1%, %y1%, %x2%, %y2%,*20 %myFile%
 	if(errorlevel==2){
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
-	} else if (errorlevel==1){
+	} else if (errorlevel==0){
 		;image found, 2 players
 		return 2
 	}
 	;315,50 380 125
-	ImageSearch, imgx, imgy, winx+winwid*.123, winy+winhei*.0347, winx+winwid*.1484, winy+winhei*.0868,*20 %myFile%
+	x3:=Floor(winx+winwid*.123)
+	y3:=Floor(winy+winhei*.0347)
+	x4:=Floor(winx+winwid*.1484)
+	y4:=Floor(winy+winhei*.0868)
+	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*20 %myFile%
 	if(errorlevel==2){
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
-	} else if (errorlevel==1){
+	} else if (errorlevel==0){
 		;image found, 3 players
 		return 3
 	} else {
@@ -63,14 +71,6 @@ updateItemTable(){
 	if(pricesUpdatedOn==yest or pricesUpdatedOn==today or pricesUpdatedOn==tom){
 		isCurrent:=1
 	}
-	dump:=A_ScriptDir "\temps\dump.txt"
-	dumpstr:=JSON.Dump(Response.parts)
-	FileDelete %dump%
-	FileAppend, %dumpstr%, %dump%
-	dump2:=A_ScriptDir "\temps\dump2.txt"
-	dumpstr2:=JSON.Dump(Response.prices)
-	FileDelete %dump2%
-	FileAppend, %dumpstr2%, %dump2%
 	for i in Response.parts{
 		name:=Response.parts[A_Index].name
 		ducats:=Response.parts[A_Index].ducats
@@ -137,7 +137,6 @@ lookup(myItem){
 	for i in itemList{
 		if(itemList[A_Index][1]==myItem){
 			if(itemList[A_Index][4]=="1"){
-				MsgBox % itemList[A_Index][3]
 				return itemList[A_Index][3]
 			} else {
 				itemList[A_Index][4]:=1
@@ -212,7 +211,6 @@ lookup(myItem){
 			itemList[A_Index][4]:=1
 		}
 	}
-	MsgBox % "Lookup: " lowAvg
 	return lowAvg
 }
 
@@ -270,10 +268,7 @@ ducatOneScreen(){
 
 ;254,55 315,121
 ^j::
-	myFile:= A_ScriptDir "\lib\invite.png"
-	CoordMode Pixel
-	ImageSearch, imgx, imgy, 250, 50, 315, 125,*20 %myFile%
-	MsgBox % imgx . "~" . imgy . "~" . ErrorLevel
+	MsgBox % determinePlayers()
 	return
 	
 ^l::
@@ -303,20 +298,33 @@ ducatOneScreen(){
 	SetTimer,RemoveToolTip,-1000
 	ToolTip Searching
 	WinGetPos winx, winy, winwid, winhei, A	
-	box1:=Floor(winx+winwid*.25)
-	box2:=Floor(winx+winwid*.367)
-	box3:=Floor(winx+winwid*.5)
-	box4:=Floor(winx+winwid*.6328)
+	if(players==4){
+		box1:=Floor(winx+winwid*.25)
+		box2:=Floor(winx+winwid*.367)
+		box3:=Floor(winx+winwid*.5)
+		box4:=Floor(winx+winwid*.6328)
+	} else if(players==3){
+		box1:=Floor(winx+winwid*.3125)
+		box2:=Floor(winx+winwid*.4395)
+		box3:=Floor(winx+winwid*.5664)
+	} else if(players==2){
+		box1:=Floor(winx+winwid*.375)
+		box2:=Floor(winx+winwid*.5)
+	}
 	x2:=Floor(winx+winwid*.141)
 	y1:=Floor(winy+winhei*.375)
 	y2:=Floor(winy+winhei*.056)
 	results:=[]
 	results.push(OCR([box1, y1, x2, y2])) ;640
 	results.push(OCR([box2, y1, x2, y2])) ;940
-	results.push(OCR([box3, y1, x2, y2])) ;1290
-	results.push(OCR([box4, y1, x2, y2])) ;1620
+	if(players>2){
+		results.push(OCR([box3, y1, x2, y2])) ;1290
+	}
+	if(players>3){
+		results.push(OCR([box4, y1, x2, y2])) ;1620
+	}
 	itemNames:= []
-	loop 4{
+	loop %players%{
 		bestScore:=0
 		bestIndex:=0
 		iOuter:=A_Index
@@ -332,7 +340,7 @@ ducatOneScreen(){
 	}
 	mostPlat:=0
 	mostPlatIndex:=0
-	loop 4{
+	loop %players%{
 		itemNames[A_Index]:=[itemNames[A_Index],lookup(itemNames[A_Index])]
 		if(itemNames[A_Index][2]>mostPlat){
 			mostPlat:=itemNames[A_Index][2]
@@ -340,7 +348,13 @@ ducatOneScreen(){
 		}
 	}
 	
-	strOut:="Reward " mostPlatIndex " has the highest value, " mostPlat "`n`n" itemNames[1][1] " is about " itemNames[1][2] " platinum.`n" itemNames[2][1] " is about " itemNames[2][2] " platinum.`n" itemNames[3][1] " is about " itemNames[3][2] " platinum.`n" itemNames[4][1] " is about " itemNames[4][2] " platinum."
+	strOut:="Reward " mostPlatIndex " has the highest value, " mostPlat "`n`n" itemNames[1][1] " is about " itemNames[1][2] " platinum.`n" itemNames[2][1] " is about " itemNames[2][2] " platinum.`n" 
+	if(players>2){
+		strOut.=itemNames[3][1] " is about " itemNames[3][2] " platinum.`n" 
+	}
+	if(players>3){
+		itemNames[4][1] " is about " itemNames[4][2] " platinum."
+	}
 	ToolTip
 	MouseGetPos mxpos, mypos
 	SetTimer, doRTT, 250
