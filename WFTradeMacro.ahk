@@ -313,7 +313,7 @@ ducatOneScreen(){
 	sleep 100
 	;PixelGetColor, SWBlankColor, winx+winwid*.699, winy+winhei*.89,slow
 	;PixelGetColor, SWColor, winx+winwid*.699, winy+winhei*.2,slow
-	ToolTip Beginning work, this may take a while.  Please don't touch anything.
+	ToolTip % "Beginning work, this may take a while.  Please don't touch anything."
 	;MsgBox,,Ducat Manager, Beginning work.  This may take a while., 5
 	WinGetPos winx, winy, winwid, winhei, A
 	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89,slow
