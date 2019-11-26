@@ -21,6 +21,25 @@ RemoveToolTip:
 ToolTip
 return
 
+determinePlayers(){
+	;can't be 1 player
+	WinGetPos winx, winy, winwid, winhei, A
+	myFile:= A_ScriptDir "\lib\invite.png"
+	CoordMode Pixel
+	ImageSearch, imgx, imgy, winx+winwid*.0977, winy+winhei*.0347, winx+winwid*.123, winy+winhei*.0868,*20 %myFile%
+	if(errorlevel==2){
+		;Error in ImageSearch, assume 4 players (most common)
+		return 4
+	} else if (errorlevel==1){
+		;image found, 2 players
+		return 2
+	}
+	;315,50 380 125
+	ImageSearch, imgx, imgy, winx+winwid*.123, winy+winhei*.0347, winx+winwid*.1484, winy+winhei*.0868,*20 %myFile%
+
+	
+}
+
 updateItemTable(){
 	MyJsonInstance := new JSON()
 	myApi := ComObjCreate("WinHTTP.WinHttpRequest.5.1")
@@ -35,9 +54,6 @@ updateItemTable(){
 		isToday:=1
 	}
 	for i in Response.parts{
-		if(Response.parts[A_Index].name=="Forma Blueprint"){
-			MsgBox % Response.parts[A_Index].name "~" Response.parts[A_Index].ducats "~" Response.prices[A_Index].priceInfo.average "~" isToday
-		}
 		itemList.push([Response.parts[A_Index].name,Response.parts[A_Index].ducats,Round(Response.prices[A_Index].priceInfo.average,1),isToday])
 	}
 	
@@ -224,18 +240,18 @@ ducatOneScreen(){
 	return
 }
 
+;254,55 315,121
 ^j::
-	;PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89
-	MouseGetPos mx, my
-	PixelGetColor, clr,1790, 1282,slow RGB
-	MsgBox % clr
+	myFile:= A_ScriptDir "\lib\invite.png"
+	CoordMode Pixel
+	ImageSearch, imgx, imgy, 250, 50, 315, 125,*20 %myFile%
+	MsgBox % imgx . "~" . imgy . "~" . ErrorLevel
 	return
 	
 ^l::
-	WinGetPos winx, winy, winwid, winhei, A
-	PixelGetColor, clr, Floor(winx+winwid*.699), Floor(winy+winhei*.2)
-	MsgBox % Floor(winx+winwid*.699) . " " . Floor(winy+winhei*.2)
-	MsgBox % clr
+	MouseMove 275,75
+	sleep 2000
+	MouseMove 300,100
 	return
 	
 ^u::
@@ -313,7 +329,7 @@ ducatOneScreen(){
 	sleep 100
 	;PixelGetColor, SWBlankColor, winx+winwid*.699, winy+winhei*.89,slow
 	;PixelGetColor, SWColor, winx+winwid*.699, winy+winhei*.2,slow
-	ToolTip Beginning work, this may take a while.  Please don`'t touch anything.
+	ToolTip % "Beginning work, this may take a while.  Please don't touch anything."
 	;MsgBox,,Ducat Manager, Beginning work.  This may take a while., 5
 	WinGetPos winx, winy, winwid, winhei, A
 	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89,slow
