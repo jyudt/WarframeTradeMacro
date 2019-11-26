@@ -7,6 +7,7 @@
 global mxpos := 0
 global mypos := 0
 global itemList := []
+;list of [item name, ducats, price, isToday]
 global myItems := []
 
 updateItemTable()
@@ -16,31 +17,9 @@ MouseGetPos, mx, my
 RToolTip(mx,my)
 return
 
-updateItemTableWiki(){
-	myApi := ComObjCreate("WinHTTP.WinHttpRequest.5.1")
-	myURL:= "https://warframe.fandom.com/wiki/Ducats/Prices/All"
-	myApi.Open("GET", myURL, false)
-	myApi.Send()
-	Response := myApi.ResponseText
-	testFile := A_ScriptDir "\temps\itemList.txt"
-	document := ComObjCreate("HTMLfile")
-	document.write(Response)
-	table := document.getElementsByTagName("table")[0]
-	prevItem:= ""
-	loop, % table.rows.length {
-		itemList.Push([table.rows[A_Index].cells[0].innertext,table.rows[A_Index].cells[1].innertext])
-	}
-	itemList.push(["Neuroptics Blueprint",-1])
-	itemList.push(["Chassis Blueprint",-1])
-	itemList.push(["Systems Blueprint",-1])
-
-	FileDelete %testFile%
-	loop, % itemList.length(){
-		store:= itemList[A_Index][1] . " " . itemList[A_Index][2] . "`n"
-		FileAppend, %store%, %testFile%
-	}
-	return
-}
+RemoveToolTip:
+ToolTip
+return
 
 updateItemTable(){
 	MyJsonInstance := new JSON()
@@ -53,17 +32,23 @@ updateItemTable(){
 	today:=A_YYYY . "-" . A_MM . "-" . A_DD
 	isToday:=-1
 	if(today==pricesUpdatedOn){
-		isToday==1
+		isToday:=1
 	}
 	for i in Response.parts{
+		if(Response.parts[A_Index].name=="Forma Blueprint"){
+			MsgBox % Response.parts[A_Index].name "~" Response.parts[A_Index].ducats "~" Response.prices[A_Index].priceInfo.average "~" isToday
+		}
 		itemList.push([Response.parts[A_Index].name,Response.parts[A_Index].ducats,Round(Response.prices[A_Index].priceInfo.average,1),isToday])
 	}
 	
+	itemList.push(["Neuroptics Blueprint",-1,-1,1])
+	itemList.push(["Chassis Blueprint",-1,-1,1])
+	itemList.push(["Systems Blueprint",-1,-1,1])
 	
 	itemListFile := A_ScriptDir "\temps\itemList.txt"
 	FileDelete %itemListFile%
 	loop, % itemList.length(){
-		store:= itemList[A_Index][1] . " " . itemList[A_Index][2] . "`n"
+		store:= itemList[A_Index][1] . " " . itemList[A_Index][2] . " " . itemList[A_Index][3] . " " . itemList[A_Index][4]"`n"
 		FileAppend, %store%, %itemListFile%
 	}
 	return
@@ -92,6 +77,8 @@ Compare(StringA, StringB)
 	Return Score / (LengthA > LengthB ? LengthA : LengthB)
 }
 
+
+
 RToolTip(mx, my){
 	if(Abs(mxpos-mx)<50 && Abs(mypos-my)<50){
 		;~ Don't remove tooltip
@@ -106,7 +93,8 @@ RToolTip(mx, my){
 lookup(myItem){
 	for i in itemList{
 		if(itemList[A_Index][1]==myItem){
-			if(itemList[A_Index][4]==1){
+			if(itemList[A_Index][4]=="1"){
+				MsgBox % A_Index
 				return itemList[A_Index][3]
 			} else {
 				itemList[A_Index][4]:=1
@@ -267,6 +255,8 @@ ducatOneScreen(){
 	
 ;end of mission lookup	
 ^k::
+	SetTimer,RemoveToolTip,-1000
+	ToolTip Searching
 	WinGetPos winx, winy, winwid, winhei, A
 	box1:=Floor(winx+winwid*.25)
 	box2:=Floor(winx+winwid*.367)
@@ -303,8 +293,10 @@ ducatOneScreen(){
 	}
 	
 	strOut:="Reward " mostPlatIndex " has the highest value, " mostPlat "`n`n" itemNames[1][1] " is about " itemNames[1][2] " platinum.`n" itemNames[2][1] " is about " itemNames[2][2] " platinum.`n" itemNames[3][1] " is about " itemNames[3][2] " platinum.`n" itemNames[4][1] " is about " itemNames[4][2] " platinum."
-	SetTimer, doRTT, 500
-	tooltip, %strOut%
+	ToolTip
+	MouseGetPos mxpos, mypos
+	SetTimer, doRTT, 250
+	ToolTip, %strOut%
 	return
 	
 ;scrollbar is 0x66A9BE, non is 0x24292F
@@ -321,7 +313,8 @@ ducatOneScreen(){
 	sleep 100
 	;PixelGetColor, SWBlankColor, winx+winwid*.699, winy+winhei*.89,slow
 	;PixelGetColor, SWColor, winx+winwid*.699, winy+winhei*.2,slow
-	MsgBox,,Ducat Manager, Beginning work.  This may take a while., 5
+	ToolTip Beginning work, this may take a while.  Please don't touch anything.
+	;MsgBox,,Ducat Manager, Beginning work.  This may take a while., 5
 	WinGetPos winx, winy, winwid, winhei, A
 	PixelGetColor, clr, winx+winwid*.699, winy+winhei*.89,slow
 	ducatOneScreen()
@@ -334,6 +327,7 @@ ducatOneScreen(){
 		;	return
 		;}
 	}	
+	ToolTip
 	
 	itemStr:= "Items worth at least " . dppMin . " ducats per plat: `n"
 	for index, item in myItems{
@@ -341,12 +335,10 @@ ducatOneScreen(){
 		thisItem:=item[1]
 		ducats:=-1
 		plat:=9999
-		if(thisItem!="Forma"){
-			for i in itemList{
-				if(thisItem == itemList[A_Index][1]){
-					ducats:=itemList[A_Index][2]
-					plat:=itemList[A_Index][3]
-				}
+		for i in itemList{
+			if(thisItem == itemList[A_Index][1]){
+				ducats:=itemList[A_Index][2]
+				plat:=itemList[A_Index][3]
 			}
 		}
 		dpp:=Round(ducats/plat,1)
