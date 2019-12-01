@@ -19,6 +19,10 @@ Iniread, HotkeyVariable2, Hotkeys.ini, settings, DucatManagerHK, ^b
 Hotkey, %HotkeyVariable2%,doDucatMan,On
 Iniread, DefaultDucatValue, Hotkeys.ini, settings, DefaultDucatValue, 5
 
+Iniread, HotkeyVariable3, Hotkeys.ini, settings, ExitProg, ^!e
+Hotkey, %HotkeyVariable3%,ExitProg,On
+
+
 doRTT:
 MouseGetPos, mx, my
 RToolTip(mx,my)
@@ -295,7 +299,7 @@ ducatOneScreen(){
 	
 	
 	
-^4::
+ExitProg:
 	ExitApp
 	return
 	
