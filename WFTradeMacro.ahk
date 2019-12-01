@@ -9,8 +9,15 @@ global mypos := 0
 global itemList := []
 ;list of [item name, ducats, price, isToday]
 global myItems := []
+global DefaultDucatValue:=5
 
 updateItemTable()
+Iniread, HotkeyVariable, Hotkeys.ini, settings, RewardSelectorHK, ^k
+Hotkey, %HotkeyVariable%,doRewardSel,On
+
+Iniread, HotkeyVariable2, Hotkeys.ini, settings, DucatManagerHK, ^b
+Hotkey, %HotkeyVariable2%,doDucatMan,On
+Iniread, DefaultDucatValue, Hotkeys.ini, settings, DefaultDucatValue, 5
 
 doRTT:
 MouseGetPos, mx, my
@@ -293,7 +300,7 @@ ducatOneScreen(){
 	return
 	
 ;end of mission lookup	
-^k::
+doRewardSel:
 	players:=determinePlayers()
 	SetTimer,RemoveToolTip,-1000
 	ToolTip Searching
@@ -353,23 +360,29 @@ ducatOneScreen(){
 		strOut.=itemNames[3][1] " is about " itemNames[3][2] " platinum.`n" 
 	}
 	if(players>3){
-		itemNames[4][1] " is about " itemNames[4][2] " platinum."
+		strOut.=itemNames[4][1] " is about " itemNames[4][2] " platinum."
 	}
 	ToolTip
 	MouseGetPos mxpos, mypos
-	SetTimer, doRTT, 250
 	ToolTip, %strOut%
+	SetTimer, doRTT, 250
 	return
 	
 ;scrollbar is 0x66A9BE, non is 0x24292F
 ;bottom is 1790 1282
 ;issues with some items not being seen and w/ 3 line items
-^b::
+doDucatMan:
 	myItems:=[]
-	InputBox, dppMin, Ducat Manager, Please input the minimum ducat/platinum ratio
+	InputBox, dppMin, Ducat Manager, Please input the minimum ducat/platinum ratio,,,,,,,,%DefaultDucatValue%
+	if(ErrorLevel==1){
+		ToolTip  Cancelling Ducat Manager
+		Sleep 1000
+		ToolTip
+		return
+	}
 	dppMin:= RegExReplace(dppMin, "[^0-9.]", "")
 	if(dppMin=""){
-		dppMin:=5
+		dppMin:=DefaultDucatValue
 	}
 	send, {Wheelup 100}
 	sleep 100
