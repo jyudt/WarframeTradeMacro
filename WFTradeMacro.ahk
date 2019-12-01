@@ -35,7 +35,7 @@ return
 determinePlayers(){
 	;can't be 1 player
 	WinGetPos winx, winy, winwid, winhei, A
-	myFile:= A_ScriptDir "\lib\invite.png"
+	inviteIcon:= A_ScriptDir "\lib\invite.png"
 	CoordMode Pixel
 	x1:=Floor(winx+winwid*.0977)
 	y1:=Floor(winy+winhei*.0347)
@@ -54,7 +54,7 @@ determinePlayers(){
 	y3:=Floor(winy+winhei*.0347)
 	x4:=Floor(winx+winwid*.1484)
 	y4:=Floor(winy+winhei*.0868)
-	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*20 %myFile%
+	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*20 %inviteIcon%
 	if(errorlevel==2){
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
@@ -172,10 +172,10 @@ lookup(myItem){
 		myApi.Send()
 	}
 	Result := JSON.Load(myApi.ResponseText)
-	testFile := A_ScriptDir "\temps\MyFile.txt"
-	FileDelete %testFile%
+	jsonDumpFile := A_ScriptDir "\temps\jsonDump.txt"
+	FileDelete %jsonDumpFile%
 	JSONDump := JSON.Dump(Result, ,1)
-	FileAppend, %JSONDump%, %testFile%
+	FileAppend, %JSONDump%, %jsonDumpFile%
 	MouseGetPos, mxpos, mypos
 	;SetTimer, doRTT, 500
 	isMod:= false
@@ -276,27 +276,6 @@ ducatOneScreen(){
 	}
 	return
 }
-
-;254,55 315,121
-^j::
-	MsgBox % determinePlayers()
-	return
-	
-^l::
-	MouseMove 275,75
-	sleep 2000
-	MouseMove 300,100
-	return
-	
-^u::
-	updateItemTable()
-	return
-	
-^i::
-	MouseGetPos, x, y
-	msgbox % x " " y
-	return
-	
 	
 	
 ExitProg:
