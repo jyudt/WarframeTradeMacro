@@ -6,7 +6,7 @@ NOTE: Currently only works in Borderless or Fullscreen mode
   1. Install the newest version of [AutoHotkey](https://www.autohotkey.com/)
   2. Download the zip and extract into it's own folder OR clone with git
   3. Change any hotkeys you want to in Hoykeys.ini (use any text editor)
-  3. Run WFTradeMacro.exe
+  4. Run WFTradeMacro.exe
 ## Functions
   ### Reward Selector (default - ctrl+k): 
   Run at the end of a fissure to show prices of rewards.
