@@ -11,7 +11,7 @@ NOTE: Currently only works in Borderless or Fullscreen mode
   ### Reward Selector (default - ctrl+k): 
   Run at the end of a fissure to show prices of rewards.
   ### Ducat Manager (default - ctrl+b): 
-  Run in the Ducat Kiosk to show all items above a certain Ducat per plat price point. 
+  Run in the Ducat Kiosk to show all items above a certain Ducat per plat price point.  NOTE: May confuse items occasionally but prices are accurate to the item displayed
   ### Relic Manager (default - ctrl+j): 
   Displays all vaulted relics. 
   ### Exit Program (default - ctrl+alt+e): 
