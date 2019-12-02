@@ -503,10 +503,10 @@ doDucatMan:
 doRelicMan:
 	relicStr:= "Vaulted relics: `n"
 	sortArray(vaultedRelics)
-	quart:=Ceil(vaultedRelics.length()/4)
+	sect:=Ceil(vaultedRelics.length()/6)
 	for i in vaultedRelics{
-		relicStr.=vaultedRelics[i] "          "vaultedRelics[quart+i] "          " vaultedRelics[quart*2+i]"          "vaultedRelics[quart*3+i]"`n"
-		if(i==quart){
+		relicStr.=vaultedRelics[i] "       "vaultedRelics[sect+i] "       " vaultedRelics[sect*2+i]"       "vaultedRelics[sect*3+i]"       "vaultedRelics[sect*4+i]"       "vaultedRelics[sect*5+i]"`n"
+		if(i==sect){
 			break
 		}
 	}
