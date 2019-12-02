@@ -1,7 +1,7 @@
 # WarframeTradeMacro
 A general use trade macro for Warframe \
 Current functions are Reward Selector and Ducat Manager.  See below for details. \
-NOTE: Currently only works in Borderless or Fullscreen mode
+NOTE: Currently only works in Borderless or Fullscreen mode with default UI scaling.  Some parts may not work with non-default UI color
 ## Setup
   1. Install the newest version of [AutoHotkey](https://www.autohotkey.com/)
   2. Download the zip and extract into it's own folder OR clone with git
