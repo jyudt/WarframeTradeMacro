@@ -1,5 +1,3 @@
-;change ducatOneScreen and relicOneScreen
-
 #SingleInstance force
 #Persistent
 
@@ -18,9 +16,13 @@ global myRelics := []
 global vaultedRelics := []
 global DefaultDucatValue:=5
 
+ToolTip Starting Warframe Trade Macro
+
+;update tables
 updateItemTable()
 updateRelicTable()
 
+;loads configs
 Iniread, HKVRewSel, Hotkeys.ini, settings, RewardSelectorHK, ^k
 Hotkey, %HKVRewSel%,doRewardSel,On
 
@@ -34,7 +36,9 @@ Hotkey, %HKVRelMan%,doRelicMan,On
 Iniread, HKVExit, Hotkeys.ini, settings, ExitProg, ^!e
 Hotkey, %HKVExit%,ExitProg,On
 
+ToolTip
 
+;~~~~~ Tooltip 
 doRTT:
 MouseGetPos, mx, my
 RToolTip(mx,my)
@@ -44,41 +48,18 @@ RemoveToolTip:
 ToolTip
 return
 
-determinePlayers(){
-	;can't be 1 player
-	WinGetPos winx, winy, winwid, winhei, A
-	inviteIcon:= A_ScriptDir "\lib\invite.png"
-	CoordMode Pixel
-	x1:=Floor(winx+winwid*.0977)
-	y1:=Floor(winy+winhei*.0347)
-	x2:=Floor(winx+winwid*.123)
-	y2:=Floor(winy+winhei*.0868)
-	ImageSearch, imgx, imgy, %x1%, %y1%, %x2%, %y2%,*20 %myFile%
-	if(errorlevel==2){
-		;Error in ImageSearch, assume 4 players (most common)
-		return 4
-	} else if (errorlevel==0){
-		;image found, 2 players
-		return 2
-	}
-	;315,50 380 125
-	x3:=Floor(winx+winwid*.123)
-	y3:=Floor(winy+winhei*.0347)
-	x4:=Floor(winx+winwid*.1484)
-	y4:=Floor(winy+winhei*.0868)
-	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*20 %inviteIcon%
-	if(errorlevel==2){
-		;Error in ImageSearch, assume 4 players (most common)
-		return 4
-	} else if (errorlevel==0){
-		;image found, 3 players
-		return 3
+RToolTip(mx, my){
+	if(Abs(mxpos-mx)<50 && Abs(mypos-my)<50){
+		;~ Don't remove tooltip
 	} else {
-		return 4
+		ToolTip
+		SetTimer, doRTT, Off
 	}
 	
+	return
 }
 
+;~~~~~ Table Updating
 updateItemTable(){
 	MyJsonInstance := new JSON()
 	myApi := ComObjCreate("WinHTTP.WinHttpRequest.5.1")
@@ -94,7 +75,8 @@ updateItemTable(){
 	today:=A_YYYY . "-" . A_MM . "-" . A_DD
 	yest:=A_YYYY . "-" . A_MM . "-" . (A_DD-1)
 	tom:=A_YYYY . "-" . A_MM . "-" . (A_DD+1)
-	isToday:=-1
+	;account for timezones, one day off is OK for pricing
+	isCurrent:=-1
 	if(pricesUpdatedOn==yest or pricesUpdatedOn==today or pricesUpdatedOn==tom){
 		isCurrent:=1
 	}
@@ -111,9 +93,9 @@ updateItemTable(){
 		itemList.push([name,ducats,price,isCurrent])
 	}
 	
-	itemList.push(["Neuroptics Blueprint",-1,-1,1])
-	itemList.push(["Chassis Blueprint",-1,-1,1])
-	itemList.push(["Systems Blueprint",-1,-1,1])
+	itemList.push(["Neuroptics Blueprint",1,-1,1])
+	itemList.push(["Chassis Blueprint",1,-1,1])
+	itemList.push(["Systems Blueprint",1,-1,1])
 	
 	itemListFile := A_ScriptDir "\temps\itemList.txt"
 	FileDelete %itemListFile%
@@ -156,6 +138,7 @@ updateRelicTable(){
 	return
 }
 
+;~~~~~ Utility functions borrowed from online
 ;https://autohotkey.com/board/topic/70202-string-compare-function-nonstandard-method/
 Compare(StringA, StringB)
 {
@@ -212,17 +195,40 @@ SortArray(Array, Order="A") {
     } Until !Partitions
 }
 
-
-
-RToolTip(mx, my){
-	if(Abs(mxpos-mx)<50 && Abs(mypos-my)<50){
-		;~ Don't remove tooltip
+;~~~~~ Reward Selector functions
+determinePlayers(){
+	;can't be 1 player
+	WinGetPos winx, winy, winwid, winhei, A
+	inviteIcon:= A_ScriptDir "\lib\invite.png"
+	CoordMode Pixel
+	x1:=Floor(winx+winwid*.0977)
+	y1:=Floor(winy+winhei*.0347)
+	x2:=Floor(winx+winwid*.123)
+	y2:=Floor(winy+winhei*.0868)
+	ImageSearch, imgx, imgy, %x1%, %y1%, %x2%, %y2%,*20 %myFile%
+	if(errorlevel==2){
+		;Error in ImageSearch, assume 4 players (most common)
+		return 4
+	} else if (errorlevel==0){
+		;image found, 2 players
+		return 2
+	}
+	;315,50 380 125
+	x3:=Floor(winx+winwid*.123)
+	y3:=Floor(winy+winhei*.0347)
+	x4:=Floor(winx+winwid*.1484)
+	y4:=Floor(winy+winhei*.0868)
+	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*20 %inviteIcon%
+	if(errorlevel==2){
+		;Error in ImageSearch, assume 4 players (most common)
+		return 4
+	} else if (errorlevel==0){
+		;image found, 3 players
+		return 3
 	} else {
-		ToolTip
-		SetTimer, doRTT, Off
+		return 4
 	}
 	
-	return
 }
 
 lookup(myItem){
@@ -258,7 +264,6 @@ lookup(myItem){
 	JSONDump := JSON.Dump(Result, ,1)
 	FileAppend, %JSONDump%, %jsonDumpFile%
 	MouseGetPos, mxpos, mypos
-	;SetTimer, doRTT, 500
 	isMod:= false
 	modLevel:=0
 	loop % Results.include.item.items_in_set[0].tags.length(){
@@ -306,9 +311,13 @@ lookup(myItem){
 	return lowAvg
 }
 
+;~~~~~ Ducat Manager functions
 ducatOneScreen(){
-	xcords:=[130,415,695,980,1260,1540]
-	ycords:=[425,670,930,1200]
+	;xcords:=[130,415,695,980,1260,1540]
+	;ycords:=[425,670,930,1200]
+	WinGetPos winx, winy, winwid, winhei, A
+	xcords:= [Floor(winx+winwid*.0507),Floor(winx+winwid*.1621),Floor(winx+winwid*.271),Floor(winx+winwid*.383),Floor(winx+winwid*.4922),Floor(winx+winwid*.602)]
+	ycords:= [Floor(winy+winhei*.295),Floor(winy+winhei*.465),Floor(winy+winhei*.646),Floor(winy+winhei*.833)]
 	loop 4 {
 		yind:=A_Index
 		loop 6{
@@ -337,7 +346,6 @@ ducatOneScreen(){
 					}
 				}
 			}
-			
 			if(bestScore<5){
 				myItems.push(["unknown",bestScore])
 			} else {
@@ -358,9 +366,7 @@ ducatOneScreen(){
 	return
 }
 
-
-	
-	
+;~~~~~ Hotkey functions
 ExitProg:
 	ExitApp
 	return
@@ -436,7 +442,6 @@ doRewardSel:
 	
 ;scrollbar is 0x66A9BE, non is 0x24292F
 ;bottom is 1790 1282
-;issues with some items not being seen and w/ 3 line items
 doDucatMan:
 	myItems:=[]
 	InputBox, dppMin, Ducat Manager, Please input the minimum ducat/platinum ratio,,,,,,,,%DefaultDucatValue%
@@ -450,6 +455,7 @@ doDucatMan:
 	if(dppMin=""){
 		dppMin:=DefaultDucatValue
 	}
+	dppMin:=Round(dppMin,1)
 	send, {Wheelup 100}
 	sleep 100
 	MouseMove 30,30
@@ -473,17 +479,20 @@ doDucatMan:
 	
 	itemStr:= "Items worth at least " . dppMin . " ducats per plat: `n"
 	for index, item in myItems{
-		;thisItem:=myItems[A_Index][1]
 		thisItem:=item[1]
 		ducats:=-1
 		plat:=9999
-		for i in itemList{
-			if(thisItem == itemList[A_Index][1]){
-				ducats:=itemList[A_Index][2]
-				plat:=itemList[A_Index][3]
+		if(thisItem=="unknown"){
+			dpp:=-1
+		} else {
+			for i in itemList{
+				if(thisItem == itemList[A_Index][1]){
+					ducats:=itemList[A_Index][2]
+					plat:=itemList[A_Index][3]
+				}
 			}
+			dpp:=Round(ducats/plat,1)
 		}
-		dpp:=Round(ducats/plat,1)
 		if(dpp >= dppMin){
 			itemStr.=thisItem . SubStr("                                                  ",1,50-StrLen(thisItem)) . dpp . " dpp `n"
 		}
@@ -501,10 +510,10 @@ doRelicMan:
 			break
 		}
 	}
-	MsgBox % relicStr
+	MsgBox,,Relic Manager, %relicStr%
 	return
 	
-;Developer Hotkeys - Should be empty/commented on releases
+;~~~~~ Developer Hotkeys - Should be empty/commented on releases
 /*
 
 ^i::
