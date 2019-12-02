@@ -1,3 +1,5 @@
+;change ducatOneScreen and relicOneScreen
+
 #SingleInstance force
 #Persistent
 
@@ -8,19 +10,29 @@ global mxpos := 0
 global mypos := 0
 global itemList := []
 ;list of [item name, ducats, price, isToday]
+global relicList := []
+;list of [relic name, vaulted]
+;1=vaulted, 0=not
 global myItems := []
+global myRelics := []
+global vaultedRelics := []
 global DefaultDucatValue:=5
 
 updateItemTable()
-Iniread, HotkeyVariable, Hotkeys.ini, settings, RewardSelectorHK, ^k
-Hotkey, %HotkeyVariable%,doRewardSel,On
+updateRelicTable()
 
-Iniread, HotkeyVariable2, Hotkeys.ini, settings, DucatManagerHK, ^b
-Hotkey, %HotkeyVariable2%,doDucatMan,On
+Iniread, HKVRewSel, Hotkeys.ini, settings, RewardSelectorHK, ^k
+Hotkey, %HKVRewSel%,doRewardSel,On
+
+Iniread, HKVDucMan, Hotkeys.ini, settings, DucatManagerHK, ^b
+Hotkey, %HKVDucMan%,doDucatMan,On
 Iniread, DefaultDucatValue, Hotkeys.ini, settings, DefaultDucatValue, 5
 
-Iniread, HotkeyVariable3, Hotkeys.ini, settings, ExitProg, ^!e
-Hotkey, %HotkeyVariable3%,ExitProg,On
+Iniread, HKVRelMan, Hotkeys.ini, settings, RelicManager, ^j
+Hotkey, %HKVRelMan%,doRelicMan,On
+
+Iniread, HKVExit, Hotkeys.ini, settings, ExitProg, ^!e
+Hotkey, %HKVExit%,ExitProg,On
 
 
 doRTT:
@@ -74,6 +86,10 @@ updateItemTable(){
 	myApi.Open("GET", myURL, false)
 	myApi.Send()
 	Response := JSON.load(myApi.ResponseText)
+	tZoneJsonDumpFile := A_ScriptDir "\temps\tZoneDump.txt"
+	FileDelete %tZoneJsonDumpFile%
+	tZoneDump:=JSON.Dump(Response)
+	FileAppend, %tZoneDump%, %tZoneJsonDumpFile%
 	pricesUpdatedOn:=SubStr(Response.pricesUpdated,1,10)
 	today:=A_YYYY . "-" . A_MM . "-" . A_DD
 	yest:=A_YYYY . "-" . A_MM . "-" . (A_DD-1)
@@ -108,6 +124,38 @@ updateItemTable(){
 	return
 }
 
+updateRelicTable(){
+	MyJsonInstance := new JSON()
+	myApi := ComObjCreate("WinHTTP.WinHttpRequest.5.1")
+	myURL:= "https://tenno.zone/data/"
+	myApi.Open("GET", myURL, false)
+	myApi.Send()
+	Response := JSON.load(myApi.ResponseText)
+	for i in Response.relics{
+		name:=Response.relics[i].name
+		vaulted:=Response.relics[i].isVaulted
+		relicList.push([name, vaulted])
+	}
+	relicList.push(["Requiem I", 0])
+	relicList.push(["Requiem II", 0])
+	relicList.push(["Requiem III", 0])
+	relicList.push(["Requiem IV", 0])
+	
+	relicListFile := A_ScriptDir "\temps\relicList.txt"
+	FileDelete %relicListFile%
+	loop, % relicList.length(){
+		store:= relicList[A_Index][1] . "~" . relicList[A_Index][2] . "`n"
+		FileAppend, %store%, %relicListFile%
+	}
+	
+	for i in relicList{
+		if(relicList[i][2]==1){
+			vaultedRelics.push(relicList[i][1])
+		}
+	}
+	return
+}
+
 ;https://autohotkey.com/board/topic/70202-string-compare-function-nonstandard-method/
 Compare(StringA, StringB)
 {
@@ -129,6 +177,39 @@ Compare(StringA, StringB)
 		}
 	}
 	Return Score / (LengthA > LengthB ? LengthA : LengthB)
+}
+
+;https://sites.google.com/site/ahkref/custom-functions/sortarray
+SortArray(Array, Order="A") {
+    ;Order A: Ascending, D: Descending, R: Reverse
+    MaxIndex := ObjMaxIndex(Array)
+    If (Order = "R") {
+        count := 0
+        Loop, % MaxIndex
+            ObjInsert(Array, ObjRemove(Array, MaxIndex - count++))
+        Return
+    }
+    Partitions := "|" ObjMinIndex(Array) "," MaxIndex
+    Loop {
+        comma := InStr(this_partition := SubStr(Partitions, InStr(Partitions, "|", False, 0)+1), ",")
+        spos := pivot := SubStr(this_partition, 1, comma-1) , epos := SubStr(this_partition, comma+1)    
+        if (Order = "A") {    
+            Loop, % epos - spos {
+                if (Array[pivot] > Array[A_Index+spos])
+                    ObjInsert(Array, pivot++, ObjRemove(Array, A_Index+spos))    
+            }
+        } else {
+            Loop, % epos - spos {
+                if (Array[pivot] < Array[A_Index+spos])
+                    ObjInsert(Array, pivot++, ObjRemove(Array, A_Index+spos))    
+            }
+        }
+        Partitions := SubStr(Partitions, 1, InStr(Partitions, "|", False, 0)-1)
+        if (pivot - spos) > 1    ;if more than one elements
+            Partitions .= "|" spos "," pivot-1        ;the left partition
+        if (epos - pivot) > 1    ;if more than one elements
+            Partitions .= "|" pivot+1 "," epos        ;the right partition
+    } Until !Partitions
 }
 
 
@@ -276,6 +357,8 @@ ducatOneScreen(){
 	}
 	return
 }
+
+
 	
 	
 ExitProg:
@@ -369,6 +452,7 @@ doDucatMan:
 	}
 	send, {Wheelup 100}
 	sleep 100
+	MouseMove 30,30
 	;PixelGetColor, SWBlankColor, winx+winwid*.699, winy+winhei*.89,slow
 	;PixelGetColor, SWColor, winx+winwid*.699, winy+winhei*.2,slow
 	ToolTip % "Beginning work, this may take a while.  Please don't touch anything."
@@ -406,3 +490,99 @@ doDucatMan:
 	}
 	MsgBox,,Ducat Manager,% itemStr
 	return
+	
+doRelicMan:
+	relicStr:= "Vaulted relics: `n"
+	sortArray(vaultedRelics)
+	quart:=Ceil(vaultedRelics.length()/4)
+	for i in vaultedRelics{
+		relicStr.=vaultedRelics[i] "          "vaultedRelics[quart+i] "          " vaultedRelics[quart*2+i]"          "vaultedRelics[quart*3+i]"`n"
+		if(i==quart){
+			break
+		}
+	}
+	MsgBox % relicStr
+	return
+	
+;Developer Hotkeys - Should be empty/commented on releases
+/*
+
+^i::
+	MouseGetPos mxpos, mypos
+	MsgBox % mxpos " " mypos
+
+*/
+
+;~~~~~~~~~~~~~~~~~~~~~
+;Unused code that may be useful in the future
+;~~~~~~~~~~~~~~~~~~~~~
+
+/*
+doRelicMan:
+	myRelics:= []
+	send, {Wheelup 100}
+	sleep 100
+	ToolTip % "Beginning work, this may take a while.  Please don't touch anything."
+	WinGetPos winx, winy, winwid, winhei, A
+	MouseMove 30,30
+	PixelGetColor, clr, winx+winwid*.599, winy+winhei*.895,slow
+	relicOneScreen()
+	ToolTip
+	relicStr:= "Vaulted relics: `n"
+	for i in myRelics{
+		if(myRelics[i][2]==1){
+			relicStr.= myRelics[i][1] " " myRelics[i][2] "`n"
+		}
+	}
+	MsgBox % relicStr
+	
+	return
+	
+*/
+
+;Seems unviable.  Too much mixing of letters/numbers (5/S, 5/b, etc) and would take too long to be very useful
+/*
+relicOneScreen(){
+	xcords:=[130,420,700,1000,1285]
+	ycords:=[425,690,970,1230]
+	loop 4 {
+		yind:=A_Index
+		loop 5{
+			thisItem:=OCR([xcords[A_Index],ycords[yind],230,70])
+			bestScore:=0
+			bestIndex:=0
+			thisRelic:=RegExReplace(thisItem, "[^a-zA-Z1-9 ]", "")
+			thisRelic:=StrReplace(thisRelic, "Radiant")
+			thisRelic:=StrReplace(thisRelic, "Flawless")
+			thisRelic:=StrReplace(thisRelic, "Exceptional")
+			thisRelic:=StrReplace(thisRelic, "Relic")
+			MsgBox % thisRelic
+			for i in relicList{
+				iScore:= Compare(thisRelic,RegExReplace(relicList[A_Index][1], "[^a-zA-Z1-9 ]", ""))
+				if(iScore>bestScore){
+					bestScore:=iScore
+					bestIndex:=A_Index
+				}
+			}
+			
+			if(bestScore<5){
+				myRelics.push(["unknown",bestScore])
+			} else {
+				doAdd = true
+				toAdd:=[relicList[bestIndex][1]]
+				for i in myRelics{
+					if(myRelics[A_Index]==toAdd){
+						doAdd = false
+					}
+				}
+				if(doAdd){
+					toAdd:=[relicList[bestIndex][1],bestScore]
+					myRelics.push(toAdd)
+				}
+			}
+		}
+	}
+}
+*/
+
+
