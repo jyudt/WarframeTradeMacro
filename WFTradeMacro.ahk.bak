@@ -207,11 +207,9 @@ determinePlayers(){
 	y2:=Floor(winy+winhei*.0868)
 	ImageSearch, imgx, imgy, %x1%, %y1%, %x2%, %y2%,*25 *TransWhite %inviteIcon%
 	if(errorlevel==2){
-		MsgBox test1
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
 	} else if (errorlevel==0){
-				MsgBox test2
 		;image found, 2 players
 		return 2
 	}
@@ -222,15 +220,12 @@ determinePlayers(){
 	y4:=Floor(winy+winhei*.0868)
 	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*25 *TransWhite %inviteIcon%
 	if(errorlevel==2){
-				MsgBox test3
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
 	} else if (errorlevel==0){
-				MsgBox test4
 		;image found, 3 players
 		return 3
 	} else {
-				MsgBox test5
 		return 4
 	}
 	
@@ -519,13 +514,13 @@ doRelicMan:
 	return
 	
 ;~~~~~ Developer Hotkeys - Should be empty/commented on releases
-
+/*
 
 ^i::
 	MsgBox % determinePlayers()
 
 
-
+*/
 ;~~~~~~~~~~~~~~~~~~~~~
 ;Unused code that may be useful in the future
 ;~~~~~~~~~~~~~~~~~~~~~
