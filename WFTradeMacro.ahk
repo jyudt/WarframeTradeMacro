@@ -205,7 +205,7 @@ determinePlayers(){
 	y1:=Floor(winy+winhei*.0347)
 	x2:=Floor(winx+winwid*.123)
 	y2:=Floor(winy+winhei*.0868)
-	ImageSearch, imgx, imgy, %x1%, %y1%, %x2%, %y2%,*20 %myFile%
+	ImageSearch, imgx, imgy, %x1%, %y1%, %x2%, %y2%,*25 *TransWhite %inviteIcon%
 	if(errorlevel==2){
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
@@ -218,7 +218,7 @@ determinePlayers(){
 	y3:=Floor(winy+winhei*.0347)
 	x4:=Floor(winx+winwid*.1484)
 	y4:=Floor(winy+winhei*.0868)
-	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*20 %inviteIcon%
+	ImageSearch, imgx, imgy, %x3%, %y3%, %x4%, %y4%,*25 *TransWhite %inviteIcon%
 	if(errorlevel==2){
 		;Error in ImageSearch, assume 4 players (most common)
 		return 4
@@ -517,11 +517,10 @@ doRelicMan:
 /*
 
 ^i::
-	MouseGetPos mxpos, mypos
-	MsgBox % mxpos " " mypos
+	MsgBox % determinePlayers()
+
 
 */
-
 ;~~~~~~~~~~~~~~~~~~~~~
 ;Unused code that may be useful in the future
 ;~~~~~~~~~~~~~~~~~~~~~
